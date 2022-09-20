@@ -1,7 +1,7 @@
 # docker-compose -f docker-compose.yml up -d
 # run above command to set up the applications in docker
 
-version: "3.7"
+version: "3.8"
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.4.1
@@ -10,47 +10,78 @@ services:
     environment:
       - xpack.security.enabled=false
       - discovery.type=single-node
-    ulimits: 
-      memlock:
-        soft: -1 
-        hard: -1
-      nofile:
-        soft: 65536
-        hard: 65536
-    cap_add: 
-      - IPC_LOCK
+      - xpack.monitoring.collection.enabled=true
+      - xpack.security.audit.enabled=true
+      - xpack.license.self_generated.type=trial
+    networks:
+      - elastic
     volumes:
-      - elasticsearch-data-volume:/usr/share/elasticsearch/data
+      - elasticsearch:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
+
 
   kibana:
     container_name: kibana
     image: docker.elastic.co/kibana/kibana:8.4.1
     restart: always
     environment:
-      SERVER_NAME: kibana
+      ELASTICSEARCH_URL: http://elasticsearch:9200
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      SERVER_NAME: kibana
+    networks:
+      - elastic
+    volumes:
+      - kibana:/usr/share/kibana/data
     ports:
       - "5601:5601"
     depends_on:
       - elasticsearch
 
+
   logstash:
-    image: logstash:8.4.1
+    image: docker.elastic.co/logstash/logstash:8.4.1
     container_name: logstash
     restart: always
-    volumes:
-    - ./logstash/:/logstash_dir
-    command: logstash -f /logstash_dir/logstash.conf 
-    depends_on:
-      - elasticsearch
-    ports:
-    - '9600:9600'
     environment:
-      LS_JAVA_OPTS: "-Xmx256m -Xms256m"    
+      - XPACK_MONITORING_ELASTICSEARCH_URL=http://elasticsearch:9200
+    ports:
+      - "9600:9600"
+    networks:
+      - elastic
+    configs:
+      - source: ls_config
+        target: /usr/share/logstash/config/logstashfile.conf
 
 
-volumes: 
-  elasticsearch-data-volume:
-    driver: local
+  filebeat:
+    user: root
+    container_name: filebeat
+    image: docker.elastic.co/beats/filebeat:8.4.1
+    networks:
+      - elastic
+    links:
+      - logstash:logstash
+    depends_on:
+      - logstash
+    volumes:
+      - /var/run/docker.sock:/host_docker/docker.sock
+      - /var/lib/docker:/host_docker/var/lib/docker
+      - ./mylog:/usr/share/filebeat/mylog
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
+    command: ["--strict.perms=false"]
+
+
+
+
+networks:
+  elastic:
+
+volumes:
+  elasticsearch:
+    driver: local 
+  kibana:
+
+configs:
+  ls_config:
+    file: /logstashfile.conf
