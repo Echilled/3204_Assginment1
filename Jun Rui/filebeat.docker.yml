@@ -1,0 +1,34 @@
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+  
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:  #Configure the global acquisition path, which can be distinguished according to different modules in the later stage
+    - "/logs/*.log"  # Specify the path of the log file to be collected (the path of the file in the container, so we need to mount it)
+  json.message_key: log
+  json.keys_under_root: true
+  processors:
+  - add_docker_metadata: ~
+
+
+#Send output to logstash
+output.logstash:
+  hosts: ["logstash:5044"] 
+
+#Send output to elasticsearch
+# output.elasticsearch:
+#   hosts: ["elasticsearch:9200"]
+
+
+#================================ Logging =====================================
+
+# Sets log level. The default log level is info.
+# Available log levels are: critical, error, warning, info, debug
+logging.level: debug
+
+# At debug level, you can selectively enable logging only for some components.
+# To enable all selectors use ["*"]. Examples of other selectors are "beat",
+# "publish", "service".
+logging.selectors: ["publish"]
