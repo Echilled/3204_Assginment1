@@ -1,0 +1,10 @@
+ENV['VAGRANT_DEFAULT_PROVIDER'] = "docker"
+
+Vagrant.configure("2") do |config|
+  config.vm.define "mail" do
+    config.vm.provider "docker" do |d|
+      d.image = "marcopas/docker-mailslurper"
+      d.ports = ["2500:2500", "8080:8080", "8085:8085"]
+    end
+  end
+end
