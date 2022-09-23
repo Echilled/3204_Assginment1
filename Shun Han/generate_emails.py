@@ -117,7 +117,7 @@ def sendMail(msg):
 # Seed the random generator
 #
 def main():
-    random.seed(datetime.datetime.now())
+    random.seed(datetime.datetime.now().timestamp())
 
     choice = [makeHTMLMessage(
             "Weird TO Address",
@@ -137,8 +137,8 @@ def main():
         )]
 
     try:
-        if len(sys.argv) > 2 and type(sys.argv[2]) == int:
-            for _ in range(sys.argv[2]):
+        if len(sys.argv) == 2 and sys.argv[1].isnumeric():
+            for _ in range(int(sys.argv[1])):
                 msg = random.choice(choice)
 
                 sendMail(msg)        
@@ -146,8 +146,11 @@ def main():
             msg = random.choice(choice)
 
             sendMail(msg)
+      
 
     except Exception as e:
-        print("An error occurred while trying to connect and send the email: {0}".format(
-            e.message))
+        print(f"An error occurred while trying to connect and send the email: {e.message}")
         print(sys.exc_info())
+
+if __name__ == "__main__":
+    main()
