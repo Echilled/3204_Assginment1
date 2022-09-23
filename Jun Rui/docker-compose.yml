@@ -13,6 +13,7 @@ services:
       xpack.monitoring.collection.enabled: true
       xpack.security.audit.enabled: true
       xpack.license.self_generated.type: trial
+      http.host: 0.0.0.0
       # xpack.monitoring.elasticsearch.username: elastic
       # xpack.monitoring.elasticsearch.password: changeme
     networks:
@@ -21,7 +22,6 @@ services:
       - elasticsearch:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
-      - "9300:9300"
 
 
   logstash:
@@ -31,8 +31,6 @@ services:
     environment:
       XPACK_MONITORING_ELASTICSEARCH_URL: http://elasticsearch:9200
     ports:
-      - "5000:5000/tcp"
-      - "5000:5000/udp"
       - "9600:9600"
     networks:
       - elastic
@@ -62,6 +60,7 @@ services:
 
 
   filebeat:
+    user: root
     container_name: filebeat
     image: docker.elastic.co/beats/filebeat:8.4.2
     restart: always
@@ -71,16 +70,20 @@ services:
       - elastic
     volumes:
       - filebeat:/usr/share/filebeat/data
+      - ./logs:/usr/share/filebeat/logs
     ports:
       - "5044:5044"
     configs:
       - source: fb_config
         target: /usr/share/filebeat/filebeat.yml
+
     command: filebeat -e -strict.perms=false
     depends_on: 
       - elasticsearch
       - logstash
       - kibana
+    links: 
+      - logstash
 
 
 

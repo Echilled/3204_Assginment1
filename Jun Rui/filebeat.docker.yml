@@ -1,26 +1,26 @@
+# ============================== Filebeat modules ==============================
 filebeat.config.modules:
   path: ${path.config}/modules.d/*.yml
   reload.enabled: false
   
+
+
+ # ============================== Filebeat inputs ===============================  
 filebeat.inputs:
-- type: log
+- type: filestream
   enabled: true
   paths:  #Configure the global acquisition path, which can be distinguished according to different modules in the later stage
-    - "/logs/*.log"  # Specify the path of the log file to be collected (the path of the file in the container, so we need to mount it)
-  json.message_key: log
-  json.keys_under_root: true
-  processors:
-  - add_docker_metadata: ~
+    - "/usr/share/filebeat/logs/*"  # Specify the path of the log file to be collected (the path of the file in the container, so we need to mount it)
 
 
-#Send output to logstash
-output.logstash:
-  hosts: ["logstash:5044"] 
 
-#Send output to elasticsearch
-# output.elasticsearch:
-#   hosts: ["elasticsearch:9200"]
 
+# ======================= Elasticsearch template setting =======================
+
+setup.template.settings:
+  index.number_of_shards: 1
+  #index.codec: best_compression
+  #_source.enabled: false
 
 #================================ Logging =====================================
 
@@ -31,4 +31,34 @@ logging.level: debug
 # At debug level, you can selectively enable logging only for some components.
 # To enable all selectors use ["*"]. Examples of other selectors are "beat",
 # "publish", "service".
-logging.selectors: ["publish"]
+logging.selectors: ["*"]
+
+
+# =================================== Kibana ===================================
+setup.kibana:
+  host: "localhost:5601"
+
+
+
+
+# ================================== Outputs ===================================
+# ------------------------------ Logstash Output -------------------------------
+#Send output to logstash
+output.logstash:
+  hosts: ["localhost:5044"]
+
+
+
+# ---------------------------- Elasticsearch Output ----------------------------
+#Send output to elasticsearch
+# output.elasticsearch:
+#   hosts: ["localhost:9200"]
+
+
+# ================================= Processors =================================
+processors:
+  - add_host_metadata:
+      when.not.contains.tags: forwarded
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+  - add_kubernetes_metadata: ~
