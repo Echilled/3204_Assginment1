@@ -22,7 +22,7 @@ services:
       - elasticsearch:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
-
+      - "9300:9300"
 
   logstash:
     image: docker.elastic.co/logstash/logstash:8.4.2
@@ -32,6 +32,8 @@ services:
       XPACK_MONITORING_ELASTICSEARCH_URL: http://elasticsearch:9200
     ports:
       - "9600:9600"
+      - "5000:5000"
+      - "5044:5044"
     networks:
       - elastic
     depends_on:
@@ -71,8 +73,6 @@ services:
     volumes:
       - filebeat:/usr/share/filebeat/data
       - ./logs:/usr/share/filebeat/logs
-    ports:
-      - "5044:5044"
     configs:
       - source: fb_config
         target: /usr/share/filebeat/filebeat.yml
@@ -83,7 +83,8 @@ services:
       - logstash
       - kibana
     links: 
-      - logstash
+      - logstash:logstash
+    stdin_open: true
 
 
 

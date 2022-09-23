@@ -45,7 +45,7 @@ setup.kibana:
 # ------------------------------ Logstash Output -------------------------------
 #Send output to logstash
 output.logstash:
-  hosts: ["localhost:5044"]
+  hosts: ["logstash:5044"]
 
 
 
