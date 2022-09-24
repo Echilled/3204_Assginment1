@@ -80,12 +80,12 @@ def makeMultipartMessage(subject, date, dateFormat, textBody, htmlBody):
     return msg
 
 
-def addAttachment(filename, contentType, base64Encode=True):
+def addAttachment(subject, filename, contentType, sender, recepient, base64Encode=True):
     msg = MIMEMultipart()
 
-    msg["Subject"] = "test"
-    msg["From"] = getRandomFrom()
-    msg["To"] = getRandomTo()
+    msg["Subject"] = subject
+    msg["From"] = sender
+    msg["To"] = recepient
     msg["Date"] = datetime.datetime.now().strftime(DATE_FORMAT_1)
 
     contentTypeSplit = contentType.split("/")
@@ -150,8 +150,8 @@ def main():
             for _ in range(int(sys.argv[1])):
                 msg = random.choice(choice)
                 sendMail(msg)    
-        elif len(sys.argv) == 3:
-            new_msg = addAttachment(sys.argv[1], sys.argv[2])
+        elif len(sys.argv) == 6:
+            new_msg = addAttachment(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
             sendMail(new_msg)
         else:
             msg = random.choice(choice)
