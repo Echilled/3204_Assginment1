@@ -6,6 +6,7 @@ import smtplib
 import datetime
 import random
 from datetime import timedelta
+import email
 
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
@@ -79,12 +80,19 @@ def makeMultipartMessage(subject, date, dateFormat, textBody, htmlBody):
     return msg
 
 
-def addAttachment(msg, filename, contentType, base64Encode=True):
+def addAttachment(filename, contentType, base64Encode=True):
+    msg = MIMEMultipart()
+
+    msg["Subject"] = "test"
+    msg["From"] = getRandomFrom()
+    msg["To"] = getRandomTo()
+    msg["Date"] = datetime.datetime.now().strftime(DATE_FORMAT_1)
+
     contentTypeSplit = contentType.split("/")
 
     part = MIMEBase(contentTypeSplit[0], contentTypeSplit[1])
     part.set_payload(open(filename, "rb").read())
-    Encoders.encode_base64(part)
+    email.encoders.encode_base64(part)
     #part.add_header("Content-Type", contentType)
     part.add_header("Content-Disposition",
                     "attachment; filename=\"{0}\"".format(os.path.basename(filename)))
@@ -137,11 +145,14 @@ def main():
         )]
 
     try:
+        print(len(sys.argv))
         if len(sys.argv) == 2 and sys.argv[1].isnumeric():
             for _ in range(int(sys.argv[1])):
                 msg = random.choice(choice)
-
-                sendMail(msg)        
+                sendMail(msg)    
+        elif len(sys.argv) == 3:
+            new_msg = addAttachment(sys.argv[1], sys.argv[2])
+            sendMail(new_msg)
         else:
             msg = random.choice(choice)
 
@@ -149,7 +160,7 @@ def main():
       
 
     except Exception as e:
-        print(f"An error occurred while trying to connect and send the email: {e.message}")
+        print(f"An error occurred while trying to connect and send the email: {e}")
         print(sys.exc_info())
 
 if __name__ == "__main__":
