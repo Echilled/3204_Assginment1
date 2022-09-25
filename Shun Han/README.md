@@ -1,3 +1,7 @@
+## System requirements
+
+8 GB RAM
+2 processors
 # Requirements for ELK
 
 ```sysctl -w vm.max_map_count=262144```
