@@ -8,22 +8,26 @@ ENV FILEBEAT_VERSION 8.4.2
 
 RUN apt-get update -qq \
 && apt-get upgrade -qqy \
-&& apt-get clean \
-&& apt install curl -qqy
+&& apt install wget -qqy \
+&& apt install gnupg -qqy \
+&& apt-get install apt-transport-https -qqy \
+&& apt install systemd -qqy\
+&& apt-get clean
 
-RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz \
-&& tar xzvf filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz \
-&& rm filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz
+
+RUN wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add - \
+&& echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-8.x.list \
+&& apt-get update \
+&& apt-get install filebeat \
+&& systemctl enable filebeat
 
 
 ######################################
 #          CONFIGURATION
 ######################################
-#ADD filebeat/filebeat.yml /${FILEBEAT_DIRECTORY}/filebeat.yml
-ADD filebeat/filebeat.yml /filebeat-${FILEBEAT_VERSION}-linux-x86_64/filebeat.yml
+ADD filebeat/filebeat.yml /etc/filebeat/filebeat.yml
 
+RUN service filebeat start \
+&& cd /etc/filebeat \
+&& filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["192.168.1.3:9200"]'
 
-RUN cd filebeat-${FILEBEAT_VERSION}-linux-x86_64
-#&& ./filebeat setup -e \
-#&& chown root filebeat.yml \
-#&& ./filebeat -e

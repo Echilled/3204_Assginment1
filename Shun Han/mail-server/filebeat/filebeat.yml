@@ -65,11 +65,11 @@ filebeat.inputs:
 output.logstash:
   enabled: true
   # The Logstash hosts
-  hosts: ["localhost:5044"]
+  hosts: ["192.168.1.3:5044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
-  ssl.certificate_authorities: ["/etc/logstash/logstash-forwarder.crt"]
+  # ssl.certificate_authorities: ["/etc/logstash/logstash-forwarder.crt"]
 
   # Certificate for TLS client authentication
   #ssl.certificate: "/etc/logstash/logstash-forwarder.crt"
