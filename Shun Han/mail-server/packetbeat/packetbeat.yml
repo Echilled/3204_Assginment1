@@ -113,6 +113,7 @@ packetbeat.protocols:
     - 8443
     - 8883  # Secure MQTT
     - 9243  # Elasticsearch
+    - 2500  # Mailslurper
 
 - type: sip
   # Configure the ports where to listen for SIP traffic. You can disable

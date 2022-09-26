@@ -29,7 +29,7 @@ RUN wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add 
 ######################################
 ADD packetbeat/packetbeat.yml /etc/packetbeat/packetbeat.yml
 
-RUN packetbeat setup -e
+RUN packetbeat setup \
 && service packetbeat start
 
 
