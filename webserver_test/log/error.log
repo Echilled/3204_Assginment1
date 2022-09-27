@@ -1,0 +1,269 @@
+2022/09/27 05:16:05 [notice] 1#1: using the "epoll" event method
+2022/09/27 05:16:05 [notice] 1#1: nginx/1.23.1
+2022/09/27 05:16:05 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/09/27 05:16:05 [notice] 1#1: OS: Linux 5.10.16.3-microsoft-standard-WSL2
+2022/09/27 05:16:05 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/09/27 05:16:05 [notice] 1#1: start worker processes
+2022/09/27 05:16:05 [notice] 1#1: start worker process 22
+2022/09/27 05:16:05 [notice] 1#1: start worker process 23
+2022/09/27 05:16:05 [notice] 1#1: start worker process 24
+2022/09/27 05:16:05 [notice] 1#1: start worker process 25
+2022/09/27 05:16:05 [notice] 1#1: start worker process 26
+2022/09/27 05:16:05 [notice] 1#1: start worker process 27
+2022/09/27 05:16:05 [notice] 1#1: start worker process 28
+2022/09/27 05:16:05 [notice] 1#1: start worker process 29
+2022/09/27 05:16:05 [notice] 1#1: start worker process 30
+2022/09/27 05:16:05 [notice] 1#1: start worker process 31
+2022/09/27 05:16:05 [notice] 1#1: start worker process 32
+2022/09/27 05:16:05 [notice] 1#1: start worker process 33
+2022/09/27 05:30:21 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/09/27 05:30:21 [notice] 23#23: gracefully shutting down
+2022/09/27 05:30:21 [notice] 22#22: gracefully shutting down
+2022/09/27 05:30:21 [notice] 26#26: gracefully shutting down
+2022/09/27 05:30:21 [notice] 24#24: gracefully shutting down
+2022/09/27 05:30:21 [notice] 28#28: gracefully shutting down
+2022/09/27 05:30:21 [notice] 25#25: gracefully shutting down
+2022/09/27 05:30:21 [notice] 27#27: gracefully shutting down
+2022/09/27 05:30:21 [notice] 30#30: gracefully shutting down
+2022/09/27 05:30:21 [notice] 31#31: gracefully shutting down
+2022/09/27 05:30:21 [notice] 29#29: gracefully shutting down
+2022/09/27 05:30:21 [notice] 32#32: gracefully shutting down
+2022/09/27 05:30:21 [notice] 32#32: exiting
+2022/09/27 05:30:21 [notice] 33#33: gracefully shutting down
+2022/09/27 05:30:21 [notice] 23#23: exiting
+2022/09/27 05:30:21 [notice] 23#23: exit
+2022/09/27 05:30:21 [notice] 22#22: exiting
+2022/09/27 05:30:21 [notice] 26#26: exiting
+2022/09/27 05:30:21 [notice] 24#24: exiting
+2022/09/27 05:30:21 [notice] 28#28: exiting
+2022/09/27 05:30:21 [notice] 25#25: exiting
+2022/09/27 05:30:21 [notice] 27#27: exiting
+2022/09/27 05:30:21 [notice] 30#30: exiting
+2022/09/27 05:30:21 [notice] 31#31: exiting
+2022/09/27 05:30:21 [notice] 29#29: exiting
+2022/09/27 05:30:21 [notice] 32#32: exit
+2022/09/27 05:30:21 [notice] 33#33: exiting
+2022/09/27 05:30:21 [notice] 22#22: exit
+2022/09/27 05:30:21 [notice] 26#26: exit
+2022/09/27 05:30:21 [notice] 24#24: exit
+2022/09/27 05:30:21 [notice] 28#28: exit
+2022/09/27 05:30:21 [notice] 25#25: exit
+2022/09/27 05:30:21 [notice] 27#27: exit
+2022/09/27 05:30:21 [notice] 30#30: exit
+2022/09/27 05:30:21 [notice] 31#31: exit
+2022/09/27 05:30:21 [notice] 29#29: exit
+2022/09/27 05:30:21 [notice] 33#33: exit
+2022/09/27 05:30:21 [notice] 1#1: signal 17 (SIGCHLD) received from 23
+2022/09/27 05:30:21 [notice] 1#1: worker process 23 exited with code 0
+2022/09/27 05:30:21 [notice] 1#1: signal 29 (SIGIO) received
+2022/09/27 05:30:21 [notice] 1#1: signal 17 (SIGCHLD) received from 28
+2022/09/27 05:30:21 [notice] 1#1: worker process 28 exited with code 0
+2022/09/27 05:30:21 [notice] 1#1: signal 29 (SIGIO) received
+2022/09/27 05:30:21 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2022/09/27 05:30:21 [notice] 1#1: worker process 24 exited with code 0
+2022/09/27 05:30:21 [notice] 1#1: worker process 25 exited with code 0
+2022/09/27 05:30:21 [notice] 1#1: worker process 26 exited with code 0
+2022/09/27 05:30:21 [notice] 1#1: worker process 29 exited with code 0
+2022/09/27 05:30:21 [notice] 1#1: worker process 31 exited with code 0
+2022/09/27 05:30:21 [notice] 1#1: worker process 33 exited with code 0
+2022/09/27 05:30:21 [notice] 1#1: signal 29 (SIGIO) received
+2022/09/27 05:30:21 [notice] 1#1: signal 17 (SIGCHLD) received from 24
+2022/09/27 05:30:21 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2022/09/27 05:30:21 [notice] 1#1: worker process 30 exited with code 0
+2022/09/27 05:30:21 [notice] 1#1: signal 29 (SIGIO) received
+2022/09/27 05:30:21 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2022/09/27 05:30:21 [notice] 1#1: worker process 32 exited with code 0
+2022/09/27 05:30:21 [notice] 1#1: signal 29 (SIGIO) received
+2022/09/27 05:30:21 [notice] 1#1: signal 17 (SIGCHLD) received from 27
+2022/09/27 05:30:21 [notice] 1#1: worker process 27 exited with code 0
+2022/09/27 05:30:21 [notice] 1#1: signal 29 (SIGIO) received
+2022/09/27 05:30:21 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2022/09/27 05:30:21 [notice] 1#1: worker process 22 exited with code 0
+2022/09/27 05:30:21 [notice] 1#1: exit
+2022/09/27 05:30:23 [emerg] 1#1: host not found in upstream "app" in /etc/nginx/conf.d/site.conf:32
+2022/09/27 05:30:35 [emerg] 1#1: host not found in upstream "app" in /etc/nginx/conf.d/site.conf:32
+2022/09/27 05:30:47 [emerg] 1#1: host not found in upstream "app" in /etc/nginx/conf.d/site.conf:32
+2022/09/27 05:30:59 [emerg] 1#1: host not found in upstream "app" in /etc/nginx/conf.d/site.conf:32
+2022/09/27 05:31:11 [emerg] 1#1: host not found in upstream "app" in /etc/nginx/conf.d/site.conf:32
+2022/09/27 05:31:23 [emerg] 1#1: host not found in upstream "app" in /etc/nginx/conf.d/site.conf:32
+2022/09/27 05:31:35 [emerg] 1#1: host not found in upstream "app" in /etc/nginx/conf.d/site.conf:32
+2022/09/27 05:31:47 [notice] 1#1: using the "epoll" event method
+2022/09/27 05:31:47 [notice] 1#1: nginx/1.23.1
+2022/09/27 05:31:47 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/09/27 05:31:47 [notice] 1#1: OS: Linux 5.10.16.3-microsoft-standard-WSL2
+2022/09/27 05:31:47 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/09/27 05:31:47 [notice] 1#1: start worker processes
+2022/09/27 05:31:47 [notice] 1#1: start worker process 31
+2022/09/27 05:31:47 [notice] 1#1: start worker process 32
+2022/09/27 05:31:47 [notice] 1#1: start worker process 33
+2022/09/27 05:31:47 [notice] 1#1: start worker process 34
+2022/09/27 05:31:47 [notice] 1#1: start worker process 35
+2022/09/27 05:31:47 [notice] 1#1: start worker process 36
+2022/09/27 05:31:47 [notice] 1#1: start worker process 37
+2022/09/27 05:31:47 [notice] 1#1: start worker process 38
+2022/09/27 05:31:47 [notice] 1#1: start worker process 39
+2022/09/27 05:31:47 [notice] 1#1: start worker process 40
+2022/09/27 05:31:47 [notice] 1#1: start worker process 41
+2022/09/27 05:31:47 [notice] 1#1: start worker process 42
+2022/09/27 05:32:28 [error] 31#31: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 35#35: *5 open() "/usr/share/nginx/html/css/bootstrap.min.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/bootstrap.min.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 36#36: *6 open() "/usr/share/nginx/html/css/animate.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/animate.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 37#37: *7 open() "/usr/share/nginx/html/css/owl.carousel.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/owl.carousel.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 35#35: *5 open() "/usr/share/nginx/html/css/nivo-lightbox.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/nivo-lightbox.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 37#37: *8 open() "/usr/share/nginx/html/css/LineIcons.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/LineIcons.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 39#39: *10 open() "/usr/share/nginx/html/css/owl.theme.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/owl.theme.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 38#38: *9 open() "/usr/share/nginx/html/css/magnific-popup.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/magnific-popup.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 36#36: *6 open() "/usr/share/nginx/html/css/main.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/main.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 35#35: *5 open() "/usr/share/nginx/html/css/responsive.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/responsive.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 35#35: *5 open() "/usr/share/nginx/html/js/jquery-min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery-min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 36#36: *6 open() "/usr/share/nginx/html/js/popper.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/popper.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 38#38: *9 open() "/usr/share/nginx/html/js/bootstrap.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/bootstrap.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 39#39: *10 open() "/usr/share/nginx/html/js/owl.carousel.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/owl.carousel.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 37#37: *8 open() "/usr/share/nginx/html/js/jquery.nav.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery.nav.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 37#37: *7 open() "/usr/share/nginx/html/js/scrolling-nav.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/scrolling-nav.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 36#36: *6 open() "/usr/share/nginx/html/js/jquery.easing.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery.easing.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 37#37: *8 open() "/usr/share/nginx/html/js/jquery.magnific-popup.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery.magnific-popup.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 39#39: *10 open() "/usr/share/nginx/html/js/main.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/main.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 37#37: *7 open() "/usr/share/nginx/html/js/nivo-lightbox.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/nivo-lightbox.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 38#38: *9 open() "/usr/share/nginx/html/img/intro.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/intro.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 36#36: *6 open() "/usr/share/nginx/html/img/logo.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/logo.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 37#37: *8 open() "/usr/share/nginx/html/img/business/business-img.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/business/business-img.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 36#36: *6 open() "/usr/share/nginx/html/img/showcase/01.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/01.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 38#38: *9 open() "/usr/share/nginx/html/img/showcase/02.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/02.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 39#39: *10 open() "/usr/share/nginx/html/img/showcase/05.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/05.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 37#37: *7 open() "/usr/share/nginx/html/img/showcase/04.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/04.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 37#37: *8 open() "/usr/share/nginx/html/img/showcase/03.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/03.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 36#36: *6 open() "/usr/share/nginx/html/img/testimonial/01.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/testimonial/01.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 38#38: *9 open() "/usr/share/nginx/html/img/team/01.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/01.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 35#35: *5 open() "/usr/share/nginx/html/img/team/02.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/02.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 36#36: *6 open() "/usr/share/nginx/html/img/team/03.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/03.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 37#37: *8 open() "/usr/share/nginx/html/img/team/04.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/04.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 38#38: *9 open() "/usr/share/nginx/html/img/blog/01.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/blog/01.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 35#35: *5 open() "/usr/share/nginx/html/img/blog/02.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/blog/02.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 36#36: *6 open() "/usr/share/nginx/html/img/blog/03.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/blog/03.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 37#37: *8 open() "/usr/share/nginx/html/img/contact/01.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/contact/01.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 38#38: *9 open() "/usr/share/nginx/html/img/footer-logo.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/footer-logo.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 38#38: *9 open() "/usr/share/nginx/html/img/2.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/2.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:40:39 [error] 38#38: *9 open() "/usr/share/nginx/html/img/2.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/2.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 38#38: *9 open() "/usr/share/nginx/html/css/bootstrap.min.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/bootstrap.min.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 37#37: *8 open() "/usr/share/nginx/html/css/LineIcons.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/LineIcons.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 36#36: *6 open() "/usr/share/nginx/html/css/animate.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/animate.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 39#39: *10 open() "/usr/share/nginx/html/css/magnific-popup.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/magnific-popup.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 35#35: *5 open() "/usr/share/nginx/html/css/owl.carousel.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/owl.carousel.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 37#37: *7 open() "/usr/share/nginx/html/css/owl.theme.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/owl.theme.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 38#38: *9 open() "/usr/share/nginx/html/css/nivo-lightbox.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/nivo-lightbox.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 36#36: *6 open() "/usr/share/nginx/html/css/responsive.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/responsive.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 37#37: *8 open() "/usr/share/nginx/html/css/main.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/main.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 37#37: *8 open() "/usr/share/nginx/html/js/jquery-min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery-min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 38#38: *9 open() "/usr/share/nginx/html/js/bootstrap.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/bootstrap.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 36#36: *6 open() "/usr/share/nginx/html/js/popper.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/popper.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 37#37: *7 open() "/usr/share/nginx/html/js/owl.carousel.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/owl.carousel.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 35#35: *5 open() "/usr/share/nginx/html/js/jquery.nav.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery.nav.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 39#39: *10 open() "/usr/share/nginx/html/js/scrolling-nav.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/scrolling-nav.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 36#36: *6 open() "/usr/share/nginx/html/img/logo.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/logo.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 38#38: *9 open() "/usr/share/nginx/html/img/intro.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/intro.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 39#39: *10 open() "/usr/share/nginx/html/js/jquery.easing.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery.easing.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 35#35: *5 open() "/usr/share/nginx/html/js/nivo-lightbox.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/nivo-lightbox.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 37#37: *7 open() "/usr/share/nginx/html/js/jquery.magnific-popup.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery.magnific-popup.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 38#38: *9 open() "/usr/share/nginx/html/js/main.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/main.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 36#36: *6 open() "/usr/share/nginx/html/img/business/business-img.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/business/business-img.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 39#39: *10 open() "/usr/share/nginx/html/img/showcase/01.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/01.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 37#37: *7 open() "/usr/share/nginx/html/img/showcase/02.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/02.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 36#36: *6 open() "/usr/share/nginx/html/img/showcase/03.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/03.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 38#38: *9 open() "/usr/share/nginx/html/img/showcase/04.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/04.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 39#39: *10 open() "/usr/share/nginx/html/img/testimonial/01.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/testimonial/01.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 35#35: *5 open() "/usr/share/nginx/html/img/showcase/05.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/05.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 38#38: *9 open() "/usr/share/nginx/html/img/team/01.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/01.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 36#36: *6 open() "/usr/share/nginx/html/img/team/02.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/02.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 37#37: *8 open() "/usr/share/nginx/html/img/team/04.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/04.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 37#37: *7 open() "/usr/share/nginx/html/img/team/03.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/03.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 35#35: *5 open() "/usr/share/nginx/html/img/blog/01.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/blog/01.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 39#39: *10 open() "/usr/share/nginx/html/img/blog/02.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/blog/02.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 37#37: *7 open() "/usr/share/nginx/html/img/blog/03.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/blog/03.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 37#37: *8 open() "/usr/share/nginx/html/img/contact/01.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/contact/01.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 35#35: *5 open() "/usr/share/nginx/html/img/footer-logo.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/footer-logo.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:32 [error] 35#35: *5 open() "/usr/share/nginx/html/img/2.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/2.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 35#35: *5 open() "/usr/share/nginx/html/css/bootstrap.min.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/bootstrap.min.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 37#37: *7 open() "/usr/share/nginx/html/css/LineIcons.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/LineIcons.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 36#36: *6 open() "/usr/share/nginx/html/css/owl.theme.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/owl.theme.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 39#39: *10 open() "/usr/share/nginx/html/css/owl.carousel.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/owl.carousel.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 38#38: *9 open() "/usr/share/nginx/html/css/magnific-popup.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/magnific-popup.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 37#37: *8 open() "/usr/share/nginx/html/css/animate.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/animate.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 35#35: *5 open() "/usr/share/nginx/html/css/nivo-lightbox.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/nivo-lightbox.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 36#36: *6 open() "/usr/share/nginx/html/css/responsive.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/responsive.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 37#37: *7 open() "/usr/share/nginx/html/css/main.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/main.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 37#37: *7 open() "/usr/share/nginx/html/js/jquery-min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery-min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 35#35: *5 open() "/usr/share/nginx/html/js/bootstrap.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/bootstrap.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 39#39: *10 open() "/usr/share/nginx/html/js/scrolling-nav.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/scrolling-nav.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 36#36: *6 open() "/usr/share/nginx/html/js/popper.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/popper.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 37#37: *8 open() "/usr/share/nginx/html/js/owl.carousel.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/owl.carousel.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 38#38: *9 open() "/usr/share/nginx/html/js/jquery.nav.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery.nav.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 38#38: *9 open() "/usr/share/nginx/html/js/jquery.easing.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery.easing.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 37#37: *8 open() "/usr/share/nginx/html/js/nivo-lightbox.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/nivo-lightbox.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 39#39: *10 open() "/usr/share/nginx/html/js/main.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/main.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 36#36: *6 open() "/usr/share/nginx/html/js/jquery.magnific-popup.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery.magnific-popup.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 35#35: *5 open() "/usr/share/nginx/html/img/logo.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/logo.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 37#37: *7 open() "/usr/share/nginx/html/img/intro.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/intro.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 38#38: *9 open() "/usr/share/nginx/html/img/business/business-img.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/business/business-img.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 37#37: *7 open() "/usr/share/nginx/html/img/showcase/01.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/01.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 36#36: *6 open() "/usr/share/nginx/html/img/showcase/03.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/03.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 35#35: *5 open() "/usr/share/nginx/html/img/showcase/02.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/02.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 38#38: *9 open() "/usr/share/nginx/html/img/showcase/04.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/04.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 39#39: *10 open() "/usr/share/nginx/html/img/showcase/05.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/05.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 37#37: *8 open() "/usr/share/nginx/html/img/testimonial/01.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/testimonial/01.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 36#36: *6 open() "/usr/share/nginx/html/img/team/01.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/01.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 39#39: *10 open() "/usr/share/nginx/html/img/team/02.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/02.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 38#38: *9 open() "/usr/share/nginx/html/img/team/04.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/04.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 37#37: *8 open() "/usr/share/nginx/html/img/team/03.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/03.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 35#35: *5 open() "/usr/share/nginx/html/img/blog/01.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/blog/01.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 37#37: *7 open() "/usr/share/nginx/html/img/blog/02.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/blog/02.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 37#37: *8 open() "/usr/share/nginx/html/img/blog/03.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/blog/03.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 37#37: *7 open() "/usr/share/nginx/html/img/contact/01.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/contact/01.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 35#35: *5 open() "/usr/share/nginx/html/img/footer-logo.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/footer-logo.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:33 [error] 35#35: *5 open() "/usr/share/nginx/html/img/2.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/2.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:47 [error] 41#41: *12 open() "/usr/share/nginx/html/css/bootstrap.min.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/bootstrap.min.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:47 [error] 42#42: *13 open() "/usr/share/nginx/html/css/animate.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/animate.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:47 [error] 31#31: *14 open() "/usr/share/nginx/html/css/LineIcons.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/LineIcons.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:47 [error] 31#31: *15 open() "/usr/share/nginx/html/css/owl.theme.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/owl.theme.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:47 [error] 41#41: *12 open() "/usr/share/nginx/html/css/owl.carousel.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/owl.carousel.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:47 [error] 31#31: *16 open() "/usr/share/nginx/html/css/magnific-popup.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/magnific-popup.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:47 [error] 32#32: *17 open() "/usr/share/nginx/html/css/nivo-lightbox.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/nivo-lightbox.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:47 [error] 42#42: *13 open() "/usr/share/nginx/html/css/main.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/main.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:47 [error] 31#31: *14 open() "/usr/share/nginx/html/css/responsive.css" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /css/responsive.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:47 [error] 32#32: *17 open() "/usr/share/nginx/html/js/popper.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/popper.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:47 [error] 42#42: *13 open() "/usr/share/nginx/html/js/jquery-min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery-min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:47 [error] 31#31: *15 open() "/usr/share/nginx/html/js/jquery.nav.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery.nav.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:47 [error] 41#41: *12 open() "/usr/share/nginx/html/js/scrolling-nav.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/scrolling-nav.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:47 [error] 31#31: *14 open() "/usr/share/nginx/html/js/bootstrap.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/bootstrap.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:47 [error] 31#31: *16 open() "/usr/share/nginx/html/js/owl.carousel.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/owl.carousel.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *16 open() "/usr/share/nginx/html/js/jquery.easing.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery.easing.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 41#41: *12 open() "/usr/share/nginx/html/js/jquery.magnific-popup.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery.magnific-popup.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 42#42: *13 open() "/usr/share/nginx/html/img/logo.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/logo.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 32#32: *17 open() "/usr/share/nginx/html/img/intro.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/intro.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *14 open() "/usr/share/nginx/html/js/nivo-lightbox.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/nivo-lightbox.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *15 open() "/usr/share/nginx/html/js/main.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/main.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *15 open() "/usr/share/nginx/html/img/business/business-img.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/business/business-img.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 42#42: *13 open() "/usr/share/nginx/html/img/showcase/03.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/03.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 32#32: *17 open() "/usr/share/nginx/html/img/showcase/02.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/02.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 41#41: *12 open() "/usr/share/nginx/html/img/showcase/04.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/04.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *14 open() "/usr/share/nginx/html/img/showcase/01.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/01.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *16 open() "/usr/share/nginx/html/img/showcase/05.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/showcase/05.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *16 open() "/usr/share/nginx/html/img/testimonial/01.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/testimonial/01.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 41#41: *12 open() "/usr/share/nginx/html/img/team/02.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/02.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *14 open() "/usr/share/nginx/html/img/team/01.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/01.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 32#32: *17 open() "/usr/share/nginx/html/img/team/03.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/03.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 42#42: *13 open() "/usr/share/nginx/html/img/team/04.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/team/04.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *15 open() "/usr/share/nginx/html/img/blog/01.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/blog/01.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *15 open() "/usr/share/nginx/html/img/blog/02.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/blog/02.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 32#32: *17 open() "/usr/share/nginx/html/img/contact/01.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/contact/01.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 42#42: *13 open() "/usr/share/nginx/html/img/blog/03.jpg" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/blog/03.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *14 open() "/usr/share/nginx/html/img/footer-logo.png" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /img/footer-logo.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *14 open() "/usr/share/nginx/html/js/popper.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/popper.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *14 open() "/usr/share/nginx/html/js/bootstrap.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/bootstrap.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *14 open() "/usr/share/nginx/html/js/owl.carousel.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/owl.carousel.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *14 open() "/usr/share/nginx/html/js/jquery.nav.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery.nav.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *14 open() "/usr/share/nginx/html/js/scrolling-nav.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/scrolling-nav.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *14 open() "/usr/share/nginx/html/js/jquery.easing.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery.easing.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *14 open() "/usr/share/nginx/html/js/nivo-lightbox.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/nivo-lightbox.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *14 open() "/usr/share/nginx/html/js/jquery.magnific-popup.min.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/jquery.magnific-popup.min.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/09/27 05:41:48 [error] 31#31: *14 open() "/usr/share/nginx/html/js/main.js" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /js/main.js HTTP/1.1", host: "localhost", referrer: "http://localhost/"
