@@ -19,7 +19,7 @@ RUN apt-get update -qq \
 RUN wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add - \
 && echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-8.x.list \
 && apt-get update \
-&& apt-get install packetbeat \
+&& apt-get install packetbeat -qqy \
 && systemctl enable packetbeat
 
 

@@ -1,18 +1,19 @@
 ENV["VAGRANT_DEFAULT_PROVIDER"] = "docker"
+ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 
 Vagrant.configure("2") do |config|
-  config.vm.define "mail" do |mail|
-    mail.vm.network :private_network, ip: "192.168.1.3", netmask: "24"
-    mail.vm.provider "docker" do |m|
-      m.build_dir = "./mail-server/"
-      m.ports = ["2500:2500", "8080:8080", "8085:8085"]
-    end
-  end
   config.vm.define "elk" do |elk|
     elk.vm.network :private_network, ip: "192.168.1.2", netmask: "24"
     elk.vm.provider "docker" do |e|
       e.image = "sebp/elk"
       e.ports = ["9200:9200", "5601:5601", "5044:5044"]
+    end
+  end
+  config.vm.define "mail" do |mail|
+    mail.vm.network :private_network, ip: "192.168.1.3", netmask: "24"
+    mail.vm.provider "docker" do |m|
+      m.build_dir = "./mail-server/"
+      m.ports = ["2500:2500", "8080:8080", "8085:8085"]
     end
   end
 end
