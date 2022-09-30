@@ -33,8 +33,8 @@ DATE_FORMAT_6 = "%a, %-d %b %Y %H:%M:%S -0700 (UTC)"
 DATE_FORMAT_7 = "%a, %-d %b %Y %H:%M:%S -0700"
 
 useSSL = False
-address = "192.168.1.3"
-smtpPort = 2500
+address = "192.168.91.5"
+smtpPort = 25
 
 
 def makeHTMLMessage(subject, date, dateFormat, body):
@@ -60,6 +60,20 @@ def makeTextMessage(subject, date, dateFormat, body, multipart=False):
     msg["Subject"] = subject
     msg["From"] = getRandomFrom()
     msg["To"] = getRandomTo()
+    msg["Date"] = date.strftime(dateFormat)
+
+    return msg
+    
+def makeTextMessage2(subject, sender, recipient, date, dateFormat, body, multipart=False):
+    if multipart:
+        msg = MIMEMultipart()
+        msg.attach(MIMEText(body))
+    else:
+        msg = MIMEText(body)
+
+    msg["Subject"] = subject
+    msg["From"] = sender
+    msg["To"] = recipient
     msg["Date"] = date.strftime(dateFormat)
 
     return msg
@@ -150,6 +164,13 @@ def main():
             for _ in range(int(sys.argv[1])):
                 msg = random.choice(choice)
                 sendMail(msg)    
+        elif len(sys.argv) == 3:
+            msg = makeTextMessage2(
+            "Plain Text Email", sys.argv[1], sys.argv[2], 
+            datetime.datetime.now(),
+            DATE_FORMAT_1,
+            "This is a plain text email.\n\nSincerely,\nAdam Presley")
+            sendMail(msg)
         elif len(sys.argv) == 6:
             new_msg = addAttachment(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
             sendMail(new_msg)

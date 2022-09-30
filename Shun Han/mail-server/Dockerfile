@@ -1,35 +1,34 @@
-FROM marcopas/docker-mailslurper
+#
+# MailHog Dockerfile
+#
 
-#######################################
-#            INSTALLATION
-#######################################
+FROM alpine:3.4
 
-ENV FILEBEAT_VERSION 8.4.2
+# Install ca-certificates, required for the "release message" feature:
+RUN apk --no-cache add \
+    ca-certificates
 
-RUN apt-get update -qq \
-&& apt-get upgrade -qqy \
-&& apt install wget -qqy \
-&& apt install gnupg -qqy \
-&& apt-get install apt-transport-https -qqy \
-&& apt install systemd -qqy\
-&& apt-get install libpcap0.8 \
-&& apt-get clean
+# Install MailHog:
+RUN apk --no-cache add --virtual build-dependencies \
+    go \
+    git \
+  && mkdir -p /root/gocode \
+  && export GOPATH=/root/gocode \
+  && go get github.com/mailhog/MailHog \
+  && mv /root/gocode/bin/MailHog /usr/local/bin \
+  && rm -rf /root/gocode \
+  && apk del --purge build-dependencies
 
+# Add mailhog user/group with uid/gid 1000.
+# This is a workaround for boot2docker issue #581, see
+# https://github.com/boot2docker/boot2docker/issues/581
+RUN adduser -D -u 1000 mailhog
 
-RUN wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add - \
-&& echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-8.x.list \
-&& apt-get update \
-&& apt-get install packetbeat -qqy \
-&& systemctl enable packetbeat
+USER mailhog
 
+WORKDIR /home/mailhog
 
+ENTRYPOINT ["MailHog"]
 
-######################################
-#          CONFIGURATION
-######################################
-ADD packetbeat/packetbeat.yml /etc/packetbeat/packetbeat.yml
-
-RUN packetbeat setup \
-&& service packetbeat start
-
-
+# Expose the SMTP and HTTP ports:
+EXPOSE 1025 8025
