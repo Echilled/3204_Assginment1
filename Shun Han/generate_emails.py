@@ -25,16 +25,10 @@ toAddresses = (
 )
 
 DATE_FORMAT_1 = "%a, %d %b %Y %H:%M:%S -0700 (UTC)"
-DATE_FORMAT_2 = "%d %b %Y %H:%M:%S -0800"
-DATE_FORMAT_3 = "%-d %b %Y %H:%M:%S -0800"
-DATE_FORMAT_4 = "%a, %d %b %Y %H:%M:%S -0700"
-DATE_FORMAT_5 = "%a, %d %b %Y %H:%M:%S -0700 UTC"
-DATE_FORMAT_6 = "%a, %-d %b %Y %H:%M:%S -0700 (UTC)"
-DATE_FORMAT_7 = "%a, %-d %b %Y %H:%M:%S -0700"
 
 useSSL = False
 address = "192.168.91.5"
-smtpPort = 25
+smtpPort = 1025
 
 
 def makeHTMLMessage(subject, date, dateFormat, body):
@@ -159,7 +153,6 @@ def main():
         )]
 
     try:
-        print(len(sys.argv))
         if len(sys.argv) == 2 and sys.argv[1].isnumeric():
             for _ in range(int(sys.argv[1])):
                 msg = random.choice(choice)
