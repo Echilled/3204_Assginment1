@@ -15,6 +15,10 @@ def detect_null_data(dataframe):
     pass
 
 
+def detect_wrong_data(dataframe):  # detect data like ip addresses in ports whateveer
+    pass
+
+
 def main():
     df = pd.read_csv(r'port_scan_logs/sorted.csv')
     df = remove_null_columns(df)
