@@ -21,7 +21,12 @@ def detect_null_data(dataframe):
 
 
 def remove_df_entry(dataframe, column, list):
-    pass
+    # print(list)
+    # print(dataframe)
+    # print(column)
+    for bad_value in list:
+        dataframe.drop(dataframe[dataframe[column] == bad_value].index, inplace=True)
+    return dataframe
 
 
 def check_port_numbers(dataframe):  # detect data like ip addresses in ports whatever
@@ -30,7 +35,9 @@ def check_port_numbers(dataframe):  # detect data like ip addresses in ports wha
         oldlist = dataframe[column].values.tolist()
         correct_list = list(filter(re.compile(PORT_REGEX).match, oldlist))
         wrong_list = (list(set(oldlist) - set(correct_list)))
-        remove_df_entry(dataframe, column, wrong_list)
+        dataframe = remove_df_entry(dataframe, column, wrong_list)
+        print(dataframe)
+    return dataframe
         # print(re.findall(PORT_REGEX, dataframe[column].values))
 
         # result = re.match(PORT_REGEX, '192.168.91.1')
@@ -46,8 +53,12 @@ def output_to_csv(dataframe):
 
 def main():
     df = pd.read_csv(r'port_scan_logs/sorted.csv')
-    # df = remove_null_columns(df)
-    check_port_numbers(df)
+    df = df.replace(',', '', regex=True)
+    # print(df)
+    df = remove_null_columns(df)
+    df = check_port_numbers(df)
+    # print(df)
+    output_to_csv(df)
     # detect_null_data(df)
 
 
