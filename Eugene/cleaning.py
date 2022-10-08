@@ -56,7 +56,7 @@ def check_ip_addresses(dataframe):
 def replace_null_bytes(dataframe):
     bytes_column = ['destination.bytes', 'network.bytes', 'source.bytes']
     for column in bytes_column:
-        pass    # replacing the bytes '-' with 0
+         print(dataframe[column].values)  # replacing the bytes '-' with 0
 
 
 def output_to_csv(dataframe):
@@ -67,10 +67,11 @@ def main():
     df = pd.read_csv(r'port_scan_logs/sorted.csv')
     df = df.replace(',', '', regex=True)
     # print(df)
-    df = remove_null_columns(df)
-    check_port_numbers(df)
-    check_ip_addresses(df)
-    output_to_csv(df)
+    # df = remove_null_columns(df)
+    # check_port_numbers(df)
+    # check_ip_addresses(df)
+    # output_to_csv(df)
+    replace_null_bytes(df)
     # detect_null_data(df)
 
 
