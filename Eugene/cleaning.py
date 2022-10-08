@@ -1,9 +1,12 @@
 import pandas as pd
 import re
+import ipaddress
 import numpy as np
 
 PORT_REGEX = \
     '^((6553[0-5])|(655[0-2][0-9])|(65[0-4][0-9]{2})|(6[0-4][0-9]{3})|([1-5][0-9]{4})|([0-5]{0,5})|([0-9]{1,4}))$'
+
+IP_REGEX = ""
 
 
 def sort_values(dataframe, column_header):  # sort data frame by a column
@@ -21,9 +24,6 @@ def detect_null_data(dataframe):
 
 
 def remove_df_entry(dataframe, column, list):
-    # print(list)
-    # print(dataframe)
-    # print(column)
     for bad_value in list:
         dataframe.drop(dataframe[dataframe[column] == bad_value].index, inplace=True)
     return dataframe
@@ -36,15 +36,21 @@ def check_port_numbers(dataframe):  # detect data like ip addresses in ports wha
         correct_list = list(filter(re.compile(PORT_REGEX).match, oldlist))
         wrong_list = (list(set(oldlist) - set(correct_list)))
         dataframe = remove_df_entry(dataframe, column, wrong_list)
-        print(dataframe)
+        # print(dataframe)
     return dataframe
-        # print(re.findall(PORT_REGEX, dataframe[column].values))
 
-        # result = re.match(PORT_REGEX, '192.168.91.1')
-    # if result:
-    #     print("Correct port number.")
-    # else:
-    #     print("Incorrect port number.")
+
+def check_ip_addresses(dataframe):
+    ipaddr_columns = ['destination.ip', 'source.ip']
+    wrong_list = []
+    for column in ipaddr_columns:
+        print(column)
+        for value in dataframe[column].values:
+            try:
+                ipaddress.ip_address(value)
+            except ValueError:
+                wrong_list.append(value)
+    print(wrong_list)
 
 
 def output_to_csv(dataframe):
@@ -57,6 +63,7 @@ def main():
     # print(df)
     df = remove_null_columns(df)
     df = check_port_numbers(df)
+    check_ip_addresses(df)
     # print(df)
     output_to_csv(df)
     # detect_null_data(df)
