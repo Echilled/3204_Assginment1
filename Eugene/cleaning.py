@@ -44,13 +44,13 @@ def check_ip_addresses(dataframe):
     ipaddr_columns = ['destination.ip', 'source.ip']
     wrong_list = []
     for column in ipaddr_columns:
-        print(column)
         for value in dataframe[column].values:
             try:
                 ipaddress.ip_address(value)
             except ValueError:
                 wrong_list.append(value)
-    print(wrong_list)
+        dataframe = remove_df_entry(dataframe, column, wrong_list)
+    return dataframe
 
 
 def output_to_csv(dataframe):
@@ -62,8 +62,8 @@ def main():
     df = df.replace(',', '', regex=True)
     # print(df)
     df = remove_null_columns(df)
-    df = check_port_numbers(df)
-    check_ip_addresses(df)
+    check_port_numbers(df)
+    # check_ip_addresses(df)
     # print(df)
     output_to_csv(df)
     # detect_null_data(df)
