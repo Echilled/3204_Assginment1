@@ -165,6 +165,7 @@ def main():
             "This is a plain text email.\n\nSincerely,\nAdam Presley")
             sendMail(msg)
         elif len(sys.argv) == 6:
+            # subject, filename, contentType, sender, recepient
             new_msg = addAttachment(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
             sendMail(new_msg)
         else:
