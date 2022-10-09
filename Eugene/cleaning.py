@@ -6,7 +6,7 @@ import numpy as np
 PORT_REGEX = \
     '^((6553[0-5])|(655[0-2][0-9])|(65[0-4][0-9]{2})|(6[0-4][0-9]{3})|([1-5][0-9]{4})|([0-5]{0,5})|([0-9]{1,4}))$'
 
-NON_INTEGER_REGEX = '\D+'
+INTEGER_REGEX = '^(?:0|(?:[1-9](?:\d{0,2}(?:,\d{3})+|\d*)))$'
 
 
 def sort_values(dataframe, column_header):  # sort data frame by a column
@@ -53,15 +53,14 @@ def check_ip_addresses(dataframe):
     return dataframe
 
 
-def replace_null_values(dataframe):
+def clean_bytes_values(dataframe):
     bytes_columns = ['destination.bytes', 'network.bytes', 'source.bytes', 'destination.packets', 'network.packets',
                      'source.packets']
     for column in bytes_columns:
         dataframe[column] = dataframe[column].replace('-', '0')
-        print(column)
-        print(dataframe[column].values.tolist())
-        wrong_list = list(filter(re.compile(NON_INTEGER_REGEX).match, dataframe[column].values.tolist()))
-        print(wrong_list)
+        correct_list = list(filter(re.compile(INTEGER_REGEX).match, dataframe[column].values.tolist()))
+        wrong_list = (list(set(dataframe[column].values.tolist()) - set(correct_list)))
+        remove_df_entry(dataframe, column, wrong_list)
     return dataframe
 
 
@@ -76,9 +75,9 @@ def main():
     # df = remove_null_columns(df)
     # check_port_numbers(df)
     # check_ip_addresses(df)
-    replace_null_values(df)
+    clean_bytes_values(df)
     # detect_null_data(df)
-    # output_to_csv(df)
+    output_to_csv(df)
 
 
 if __name__ == "__main__":
