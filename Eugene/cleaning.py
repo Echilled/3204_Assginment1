@@ -15,7 +15,7 @@ def sort_values(dataframe, column_header):  # sort data frame by a column
 
 
 def remove_null_columns(dataframe):
-    dataframe = dataframe.loc[:, ~dataframe.columns.str.match("Unnamed")]
+    dataframe = dataframe.loc[:, ~dataframe.columns.str.contains('^Unnamed')]
     return dataframe
 
 
@@ -71,12 +71,10 @@ def output_to_csv(dataframe):
 def main():
     df = pd.read_csv(r'port_scan_logs/sorted.csv')
     df = df.replace(',', '', regex=True)
-    # print(df)
-    # df = remove_null_columns(df)
-    # check_port_numbers(df)
-    # check_ip_addresses(df)
+    check_port_numbers(df)
+    check_ip_addresses(df)
     clean_bytes_values(df)
-    # detect_null_data(df)
+    df = remove_null_columns(df)
     output_to_csv(df)
 
 
