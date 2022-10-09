@@ -7,6 +7,8 @@ PORT_REGEX = \
     '^((6553[0-5])|(655[0-2][0-9])|(65[0-4][0-9]{2})|(6[0-4][0-9]{3})|([1-5][0-9]{4})|([0-5]{0,5})|([0-9]{1,4}))$'
 
 INTEGER_REGEX = '^(?:0|(?:[1-9](?:\d{0,2}(?:,\d{3})+|\d*)))$'
+MAC_ADDRESS_REGEX = ("^([0-9A-Fa-f]{2}[:-])" +
+                     "{5}([0-9A-Fa-f]{2})|" + "([0-9a-fA-F]{4}\\." + "[0-9a-fA-F]{4}\\." + "[0-9a-fA-F]{4})$")
 
 
 def sort_values(dataframe, column_header):  # sort data frame by a column
@@ -32,11 +34,7 @@ def remove_df_entry(dataframe, column, list):
 def check_port_numbers(dataframe):  # detect data like ip addresses in ports whatever
     port_columns = ['destination.port', 'source.port']
     for column in port_columns:
-        oldlist = dataframe[column].values.tolist()
-        correct_list = list(filter(re.compile(PORT_REGEX).match, oldlist))
-        wrong_list = (list(set(oldlist) - set(correct_list)))
-        dataframe = remove_df_entry(dataframe, column, wrong_list)
-        # print(dataframe)
+        validate_values(dataframe, column, PORT_REGEX)
     return dataframe
 
 
@@ -58,10 +56,22 @@ def clean_bytes_values(dataframe):
                      'source.packets']
     for column in bytes_columns:
         dataframe[column] = dataframe[column].replace('-', '0')
-        correct_list = list(filter(re.compile(INTEGER_REGEX).match, dataframe[column].values.tolist()))
-        wrong_list = (list(set(dataframe[column].values.tolist()) - set(correct_list)))
-        remove_df_entry(dataframe, column, wrong_list)
+        validate_values(dataframe, column, INTEGER_REGEX)
     return dataframe
+
+
+def validate_values(dataframe, column, regex):
+    correct_list = list(filter(re.compile(regex).match, dataframe[column].values.tolist()))
+    wrong_list = (list(set(dataframe[column].values.tolist()) - set(correct_list)))
+    remove_df_entry(dataframe, column, wrong_list)
+
+
+def replace_empty_bytes(dataframe, column):
+    dataframe[column] = dataframe[column].replace('-', '0')
+
+
+def drop_irrelevant_columns():
+    pass
 
 
 def output_to_csv(dataframe):
