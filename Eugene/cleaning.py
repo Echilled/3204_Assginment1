@@ -33,8 +33,7 @@ def remove_df_entry(dataframe, column, list):
 
 def check_port_numbers(dataframe):  # detect data like ip addresses in ports whatever
     port_columns = ['destination.port', 'source.port']
-    for column in port_columns:
-        validate_values(dataframe, column, PORT_REGEX)
+    validate_values(dataframe, port_columns, PORT_REGEX)
     return dataframe
 
 
@@ -51,19 +50,24 @@ def check_ip_addresses(dataframe):
     return dataframe
 
 
+def check_mac_adresses(dataframe):
+    macaddr_columns = []
+
+
 def clean_bytes_values(dataframe):
     bytes_columns = ['destination.bytes', 'network.bytes', 'source.bytes', 'destination.packets', 'network.packets',
                      'source.packets']
     for column in bytes_columns:
         dataframe[column] = dataframe[column].replace('-', '0')
-        validate_values(dataframe, column, INTEGER_REGEX)
+    validate_values(dataframe, bytes_columns, INTEGER_REGEX)
     return dataframe
 
 
-def validate_values(dataframe, column, regex):
-    correct_list = list(filter(re.compile(regex).match, dataframe[column].values.tolist()))
-    wrong_list = (list(set(dataframe[column].values.tolist()) - set(correct_list)))
-    remove_df_entry(dataframe, column, wrong_list)
+def validate_values(dataframe, column_list, regex):
+    for column in column_list:
+        correct_list = list(filter(re.compile(regex).match, dataframe[column].values.tolist()))
+        wrong_list = (list(set(dataframe[column].values.tolist()) - set(correct_list)))
+        remove_df_entry(dataframe, column, wrong_list)
 
 
 def replace_empty_bytes(dataframe, column):
