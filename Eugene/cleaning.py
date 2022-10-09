@@ -6,7 +6,7 @@ import numpy as np
 PORT_REGEX = \
     '^((6553[0-5])|(655[0-2][0-9])|(65[0-4][0-9]{2})|(6[0-4][0-9]{3})|([1-5][0-9]{4})|([0-5]{0,5})|([0-9]{1,4}))$'
 
-INTEGER_REGEX = '^(?:0|(?:[1-9](?:\d{0,2}(?:,\d{3})+|\d*)))$'
+INTEGER_REGEX = r'^(?:0|(?:[1-9](?:\d{0,2}(?:,\d{3})+|\d*)))$'
 MAC_ADDRESS_REGEX = ("^([0-9A-Fa-f]{2}[:-])" +
                      "{5}([0-9A-Fa-f]{2})|" + "([0-9a-fA-F]{4}\\." + "[0-9a-fA-F]{4}\\." + "[0-9a-fA-F]{4})$")
 
@@ -51,7 +51,9 @@ def check_ip_addresses(dataframe):
 
 
 def check_mac_adresses(dataframe):
-    macaddr_columns = []
+    macaddr_columns = ['destination.mac', 'source.mac', 'host.mac']
+    validate_values(dataframe, macaddr_columns, MAC_ADDRESS_REGEX)
+    return dataframe
 
 
 def clean_bytes_values(dataframe):
@@ -73,6 +75,9 @@ def validate_values(dataframe, column_list, regex):
 def replace_empty_bytes(dataframe, column):
     dataframe[column] = dataframe[column].replace('-', '0')
 
+def universal_timestamp_converter():
+    pass
+
 
 def drop_irrelevant_columns():
     pass
@@ -87,6 +92,7 @@ def main():
     df = df.replace(',', '', regex=True)
     check_port_numbers(df)
     check_ip_addresses(df)
+    check_mac_adresses(df)
     clean_bytes_values(df)
     df = remove_null_columns(df)
     output_to_csv(df)
