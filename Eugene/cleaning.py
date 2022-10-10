@@ -1,6 +1,8 @@
 import pandas as pd
 import re
 import ipaddress
+import datetime
+from dateutil import parser
 import numpy as np
 
 PORT_REGEX = \
@@ -75,8 +77,18 @@ def validate_values(dataframe, column_list, regex):
 def replace_empty_bytes(dataframe, column):
     dataframe[column] = dataframe[column].replace('-', '0')
 
-def universal_timestamp_converter():
-    pass
+
+def universal_timestamp_converter(dataframe):
+    new_timestamp_list = []
+    for timestamp in dataframe['@timestamp'].values:
+        timestamp = timestamp.split(' @')
+        timestamp[0] = str(datetime.datetime.strptime(timestamp[0], '%b %d %Y')).split(' ')[0]
+        timestamp = ' '.join(timestamp)
+        # timestamp = '\'' + timestamp  # for excel
+        new_timestamp_list.append(timestamp)
+    dataframe['@timestamp'] = new_timestamp_list
+    print(dataframe['@timestamp'].values)
+    return dataframe
 
 
 def drop_irrelevant_columns():
@@ -84,17 +96,18 @@ def drop_irrelevant_columns():
 
 
 def output_to_csv(dataframe):
-    dataframe.to_csv('port_scan_logs/cleaned.csv')
+    dataframe.to_csv('port_scan_logs/cleaned.csv', date_format='%Y-%m-%d %H:%M:%S.%f')
 
 
 def main():
     df = pd.read_csv(r'port_scan_logs/sorted.csv')
     df = df.replace(',', '', regex=True)
-    check_port_numbers(df)
-    check_ip_addresses(df)
-    check_mac_adresses(df)
-    clean_bytes_values(df)
-    df = remove_null_columns(df)
+    # check_port_numbers(df)
+    # check_ip_addresses(df)
+    # check_mac_adresses(df)
+    # clean_bytes_values(df)
+    # df = remove_null_columns(df)
+    df = universal_timestamp_converter(df)
     output_to_csv(df)
 
 
