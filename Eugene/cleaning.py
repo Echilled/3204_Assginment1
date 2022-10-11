@@ -12,6 +12,8 @@ MAC_ADDRESS_REGEX = ("^([0-9A-Fa-f]{2}[:-])" +
 
 TIME_REGEX = ""
 
+BAD_VALUE_LIST = ['-']
+
 
 def sort_values(dataframe, column_header):  # sort data frame by a column
     dataframe.sort_values(by=column_header, ascending=True)
@@ -76,18 +78,20 @@ def replace_empty_bytes(dataframe, column):
 
 def universal_timestamp_converter(dataframe):
     new_timestamp_list = []
-    for timestamp in dataframe['@timestamp'].values:
+    for timestamp in dataframe['event.start'].values:
         timestamp = timestamp.split(' @')
         timestamp[0] = str(datetime.datetime.strptime(timestamp[0], '%b %d %Y')).split(' ')[0]
         timestamp = ' '.join(timestamp)
         # timestamp = '\'' + timestamp  # for excel
         new_timestamp_list.append(timestamp)
-    dataframe['@timestamp'] = new_timestamp_list
+    dataframe['event.start'] = new_timestamp_list
+    # print(dataframe['event.start'].values)
     return dataframe
 
 
-def sort_time_ascending(dataframe): # dont look at timestamp but event.start instead
-    pass
+def sort_time_ascending(dataframe):  # dont look at timestamp but event.start instead
+    dataframe = dataframe.sort_values(by=['event.start'], ascending=True)
+    return dataframe
 
 
 def get_columns_with_all_same_values(dataframe):  # remove columns with the same values as it does not help analysis
@@ -98,25 +102,27 @@ def filtering_redundant_columns():
     pass
 
 
+
 def output_to_csv(dataframe):
-    dataframe.to_csv('port_scan_logs/cleaned.csv', date_format='%Y-%m-%d %H:%M:%S.%f')
+    dataframe.to_csv('port_scan_logs/cleaned.csv')
 
 
 def main():
     df = pd.read_csv(r'port_scan_logs/real_port_scan_requests_2.csv', on_bad_lines='skip')
     df = df.replace(',', '', regex=True)
-    print(df)
-    # check_port_numbers(df)
-    # check_ip_addresses(df)
-    # check_mac_adresses(df)
-    # clean_bytes_values(df)
-    # df = remove_null_columns(df)
-    print(df.isnull().any())
 
+    check_port_numbers(df)
+    check_ip_addresses(df)
+    check_mac_adresses(df)
+    clean_bytes_values(df)
+    df = remove_null_columns(df)
+    # print(df.isnull().any())
+    universal_timestamp_converter(df)
+    df = sort_time_ascending(df)
     # print(df.columns[df.isna().any()].tolist())
 
     # df = universal_timestamp_converter(df)
-    # output_to_csv(df)
+    output_to_csv(df)
 
 
 if __name__ == "__main__":
