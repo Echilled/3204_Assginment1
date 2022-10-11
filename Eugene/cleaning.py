@@ -10,6 +10,8 @@ INTEGER_REGEX = r'^(?:0|(?:[1-9](?:\d{0,2}(?:,\d{3})+|\d*)))$'
 MAC_ADDRESS_REGEX = ("^([0-9A-Fa-f]{2}[:-])" +
                      "{5}([0-9A-Fa-f]{2})|" + "([0-9a-fA-F]{4}\\." + "[0-9a-fA-F]{4}\\." + "[0-9a-fA-F]{4})$")
 
+TIME_REGEX = ""
+
 
 def sort_values(dataframe, column_header):  # sort data frame by a column
     dataframe.sort_values(by=column_header, ascending=True)
@@ -19,10 +21,6 @@ def sort_values(dataframe, column_header):  # sort data frame by a column
 def remove_null_columns(dataframe):
     dataframe = dataframe.loc[:, ~dataframe.columns.str.contains('^Unnamed')]
     return dataframe
-
-
-def detect_null_data(dataframe):
-    print(dataframe.isnull())
 
 
 def remove_df_entry(dataframe, column, list):
@@ -85,11 +83,18 @@ def universal_timestamp_converter(dataframe):
         # timestamp = '\'' + timestamp  # for excel
         new_timestamp_list.append(timestamp)
     dataframe['@timestamp'] = new_timestamp_list
-    print(dataframe['@timestamp'].values)
     return dataframe
 
 
-def drop_irrelevant_columns():
+def sort_time_ascending(dataframe): # dont look at timestamp but event.start instead
+    pass
+
+
+def get_columns_with_all_same_values(dataframe):  # remove columns with the same values as it does not help analysis
+    pass
+
+
+def filtering_redundant_columns():
     pass
 
 
@@ -98,15 +103,20 @@ def output_to_csv(dataframe):
 
 
 def main():
-    df = pd.read_csv(r'port_scan_logs/sorted.csv')
+    df = pd.read_csv(r'port_scan_logs/real_port_scan_requests_2.csv', on_bad_lines='skip')
     df = df.replace(',', '', regex=True)
+    print(df)
     # check_port_numbers(df)
     # check_ip_addresses(df)
     # check_mac_adresses(df)
     # clean_bytes_values(df)
     # df = remove_null_columns(df)
-    df = universal_timestamp_converter(df)
-    output_to_csv(df)
+    print(df.isnull().any())
+
+    # print(df.columns[df.isna().any()].tolist())
+
+    # df = universal_timestamp_converter(df)
+    # output_to_csv(df)
 
 
 if __name__ == "__main__":
