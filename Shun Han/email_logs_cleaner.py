@@ -3,21 +3,31 @@ import json
 import pandas as pd
 
 # Change IP address of Mail server
-r = requests.get("http://192.168.1.181:8025/api/v2/messages?limit=10000")
-data = json.loads(r.text)["items"]
-pd.options.display.max_columns = None
-pd.options.display.max_colwidth = None
+r = requests.get("http://192.168.1.181:8025/api/v2/messages?limit=250")
+total = json.loads(r.text)["total"]
 
 results = []
 
-for row in data:
-    content = row["Content"]
-    mime = row["MIME"]
-    if mime is None:
-        mime = dict()
-    results.append(content | mime)
+def filter_results(data):
+    for row in data:
+        content = row["Content"]
+        mime = row["MIME"]
+        if mime is None:
+            mime = dict()
+        results.append(content | mime)
+
+if total > 250:
+    for i in range((total // 250) + 1):
+        r = requests.get(f"http://192.168.1.181:8025/api/v2/messages?limit=250&start={i*250}")
+        data = json.loads(r.text)["items"]
+        filter_results(data)
+else:
+    r = requests.get("http://192.168.1.181:8025/api/v2/messages?limit=250")
+    data = json.loads(r.text)["items"]
+    filter_results(data)
 
 df = pd.DataFrame(results)
+
 
 # ID, Date Created, Sender, Recipient, Subject, Body, File name, File type, File size, Email size
 try:
@@ -71,7 +81,7 @@ try:
     df = df[["Message-ID", "Date", "Sender", "Recipient", "Subject", "Email body", "Attachment", "File type", "File size", "Email size"]]
     df.columns = ['ID', 'Date Created', 'Sender', 'Recipient', 'Subject', 'Email Body', 'File name', 'File type', 'File size', 'Email Size']
 
-    df.to_csv("out.csv")
+    # df.to_csv("out.csv")
 
 
 except KeyError:
