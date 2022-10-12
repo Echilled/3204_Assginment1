@@ -81,7 +81,7 @@ try:
     df = df[["Message-ID", "Date", "Sender", "Recipient", "Subject", "Email body", "Attachment", "File type", "File size", "Email size"]]
     df.columns = ['ID', 'Date Created', 'Sender', 'Recipient', 'Subject', 'Email Body', 'File name', 'File type', 'File size', 'Email Size']
 
-    # df.to_csv("out.csv")
+    df.to_csv("out.csv")
 
 
 except KeyError:
