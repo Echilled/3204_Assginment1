@@ -1,0 +1,39 @@
+# Run this file using "vagrant up"
+# use command "vagrant reload [box id/name]" everytime you make change to this file
+
+unless Vagrant.has_plugin?("vagrant-docker-compose")
+  system("vagrant plugin install vagrant-docker-compose")
+  #system("vagrant plugin update vagrant-docker-compose")
+  puts "Plugin: vagrant-docker-compose installed, please try the command again."
+  exit
+end
+
+unless Vagrant.has_plugin?("vagrant-vmware-desktop")
+  system("vagrant plugin install vagrant-vmware-desktop")
+  system("vagrant plugin update vagrant-vmware-desktop")
+  puts "Plugin: vagrant-vmware-desktop installed, please try the command again."
+  exit
+end
+# User is also required to manually install "Vagrant VMware Utility Installtion" when using VMware at
+# https://www.vagrantup.com/docs/providers/vmware/vagrant-vmware-utility
+
+
+Vagrant.configure("2") do |config|
+	config.vm.box="hashicorp/bionic64"
+	#config.vm.box="StefanScherer/windows_10"
+	config.vm.network "forwarded_port", guest: 9200, host: 9200
+	config.vm.network "forwarded_port", guest: 5601, host: 5601
+	config.vm.define "elastic_stack"
+	config.vm.provider "vmware_desktop" do |vmw|
+		vmw.memory = "8192"
+	end
+    config.vm.provision :docker
+	config.vm.provision "shell", inline: "sudo curl -L https://github.com/docker/compose/releases/download/v2.11.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose"
+	config.vm.provision "shell", inline: "sudo chmod +x /usr/local/bin/docker-compose"
+	config.vm.provision "shell", inline: "docker-compose -f /vagrant/elk-docker-compose/docker-compose.yml up -d"
+	config.vm.provision "shell", inline: "docker-compose -f /vagrant/nginx_webserver/docker-compose.yml up -d"
+	
+    #config.vm.provision :docker_compose, yml: ["/elk-docker-compose/docker-compose.yml", "/nginx_webserver/docker-compose.yml"], command_options: {up: "-d"}, run: "always"
+
+end
+

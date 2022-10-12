@@ -2,7 +2,6 @@ version: '3.8'
 
 services:
   nginx:
-    build: ./
     image: nginx:latest
     container_name: webserver
     restart: unless-stopped
@@ -47,5 +46,5 @@ networks:
 
 configs:
   fb_config:
-    file: /nginx_filebeat/filebeat.docker.yml 
+    file: /vagrant/nginx_webserver/nginx_filebeat/filebeat.docker.yml 
 

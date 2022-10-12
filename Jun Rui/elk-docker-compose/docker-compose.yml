@@ -38,8 +38,6 @@ services:
       - elastic
     depends_on:
       - elasticsearch
-    # external_links:
-    #   - nginx_filebeat:nginx_filebeat
     configs:
       - source: ls_config
         target: /usr/share/logstash/pipeline/logstash.conf
@@ -104,7 +102,7 @@ volumes:
 
 configs:
   ls_config:
-    file: /logstash.conf
+    file: /vagrant/elk-docker-compose/logstash.conf
   fb_config:
-    file: /filebeat.docker.yml 
+    file: /vagrant/elk-docker-compose/filebeat.docker.yml 
 
