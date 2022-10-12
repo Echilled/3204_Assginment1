@@ -27,7 +27,8 @@ toAddresses = (
 DATE_FORMAT_1 = "%a, %d %b %Y %H:%M:%S -0700 (UTC)"
 
 useSSL = False
-address = "192.168.91.5"
+# address = "192.168.91.5"
+address = "192.168.1.181"
 smtpPort = 1025
 
 
