@@ -98,9 +98,8 @@ def get_columns_with_all_same_values(dataframe):  # remove columns with the same
     pass
 
 
-def filtering_redundant_columns():
+def filtering_redundant_columns(columns):
     pass
-
 
 
 def output_to_csv(dataframe):
@@ -116,12 +115,20 @@ def main():
     check_mac_adresses(df)
     clean_bytes_values(df)
     df = remove_null_columns(df)
-    # print(df.isnull().any())
     universal_timestamp_converter(df)
     df = sort_time_ascending(df)
     # print(df.columns[df.isna().any()].tolist())
-
+    filtering_redundant_columns(['_score'])
     # df = universal_timestamp_converter(df)
+
+    # Move actual time to first column for convenience
+    first_column = df.pop('event.start')
+    second_column = df.pop('event.end')
+    df.insert(0, 'event.start', first_column)
+    df.insert(1, 'event.end', first_column)
+    print('Row count is:', len(df.index))
+    df.reset_index(drop=True, inplace=True)
+    print(df)
     output_to_csv(df)
 
 
