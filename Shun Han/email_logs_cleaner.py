@@ -3,7 +3,7 @@ import json
 import pandas as pd
 
 # Change IP address of Mail server
-r = requests.get("http://192.168.1.181:8025/api/v2/messages")
+r = requests.get("http://192.168.1.181:8025/api/v2/messages?limit=10000")
 data = json.loads(r.text)["items"]
 pd.options.display.max_columns = None
 pd.options.display.max_colwidth = None
