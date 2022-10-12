@@ -98,8 +98,11 @@ def get_columns_with_all_same_values(dataframe):  # remove columns with the same
     pass
 
 
-def filtering_redundant_columns(columns):
-    pass
+def drop_redundant_columns(dataframe, columns):
+    keyword_cols = [col for col in dataframe.columns if 'keyword' in col]
+    print(keyword_cols)
+    for column in columns:
+        dataframe.drop(column, axis=1, inplace=True)
 
 
 def output_to_csv(dataframe):
@@ -118,7 +121,7 @@ def main():
     universal_timestamp_converter(df)
     df = sort_time_ascending(df)
     # print(df.columns[df.isna().any()].tolist())
-    filtering_redundant_columns(['_score'])
+    drop_redundant_columns(df, ['_score'])
     # df = universal_timestamp_converter(df)
 
     # Move actual time to first column for convenience
@@ -129,7 +132,7 @@ def main():
     print('Row count is:', len(df.index))
     df.reset_index(drop=True, inplace=True)
     print(df)
-    output_to_csv(df)
+    # output_to_csv(df)
 
 
 if __name__ == "__main__":
