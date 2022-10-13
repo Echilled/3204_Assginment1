@@ -95,13 +95,18 @@ def sort_time_ascending(dataframe):  # dont look at timestamp but event.start in
 
 
 def get_columns_with_all_same_values(dataframe):  # remove columns with the same values as it does not help analysis
-    pass
+    same_value_columns = []
+    for column in dataframe.columns:
+        if (dataframe[column] == dataframe[column][0]).all():
+            same_value_columns.append(column)
+    return same_value_columns
 
 
 def drop_redundant_columns(dataframe, columns):
-    keyword_cols = [col for col in dataframe.columns if 'keyword' in col]
-    print(keyword_cols)
-    for column in columns:
+    columns_to_remove = get_columns_with_all_same_values(dataframe)
+    columns_to_remove = columns_to_remove + columns
+    columns_to_remove = list(set(columns_to_remove))  # remove duplicates
+    for column in columns_to_remove:
         dataframe.drop(column, axis=1, inplace=True)
 
 
@@ -121,7 +126,11 @@ def main():
     universal_timestamp_converter(df)
     df = sort_time_ascending(df)
     # print(df.columns[df.isna().any()].tolist())
+    print('Row count is:', len(df.index))
+    print('Column count is:', df.shape[1])
     drop_redundant_columns(df, ['_score'])
+    print('Row count is:', len(df.index))
+    print('Column count is:', df.shape[1])
     # df = universal_timestamp_converter(df)
 
     # Move actual time to first column for convenience
@@ -129,9 +138,10 @@ def main():
     second_column = df.pop('event.end')
     df.insert(0, 'event.start', first_column)
     df.insert(1, 'event.end', first_column)
-    print('Row count is:', len(df.index))
+
     df.reset_index(drop=True, inplace=True)
-    print(df)
+    # print(df)
+
     # output_to_csv(df)
 
 
