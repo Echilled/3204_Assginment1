@@ -110,14 +110,21 @@ def drop_redundant_columns(dataframe, columns):
         dataframe.drop(column, axis=1, inplace=True)
 
 
+def get_null_counts(dataframe):
+    null_counts = dataframe.isnull().sum()
+    print("Number of null values in each column:\n{}".format(null_counts))
+
+
 def output_to_csv(dataframe):
     dataframe.to_csv('port_scan_logs/cleaned.csv')
 
 
 def main():
-    df = pd.read_csv(r'port_scan_logs/real_port_scan_requests_2.csv', on_bad_lines='skip')
+    df = pd.read_csv(r'port_scan_logs/real_port_scan_requests_2.csv')
+    get_columns_with_all_same_values(df)
     df = df.replace(',', '', regex=True)
-
+    print('Row count is:', len(df.index))
+    print('Column count is:', df.shape[1])
     check_port_numbers(df)
     check_ip_addresses(df)
     check_mac_adresses(df)
@@ -126,8 +133,7 @@ def main():
     universal_timestamp_converter(df)
     df = sort_time_ascending(df)
     # print(df.columns[df.isna().any()].tolist())
-    print('Row count is:', len(df.index))
-    print('Column count is:', df.shape[1])
+
     drop_redundant_columns(df, ['_score'])
     print('Row count is:', len(df.index))
     print('Column count is:', df.shape[1])
@@ -137,11 +143,11 @@ def main():
     first_column = df.pop('event.start')
     second_column = df.pop('event.end')
     df.insert(0, 'event.start', first_column)
-    df.insert(1, 'event.end', first_column)
+    df.insert(1, 'event.end', second_column)
 
+    # Ensure the index column is correct
     df.reset_index(drop=True, inplace=True)
-    # print(df)
-
+    get_columns_with_all_same_values(df)
     # output_to_csv(df)
 
 
