@@ -2,8 +2,6 @@ heartbeat.monitors:
 - type: http
   schedule: '@every 5s'
   urls:
-    - https://localhost:9200
-    - http://localhost:5601
     - http://192.168.91.20:80
 
 
@@ -15,8 +13,8 @@ heartbeat.monitors:
 
 
 # ======================= Elasticsearch template setting =======================
-setup.template.name: "nginx_heartbeat"
-setup.template.pattern: "heartbeat"
+setup.template.name: "heartbeat"
+setup.template.pattern: "nginx_heartbeat"
 setup.template.settings:
   index.number_of_shards: 1
   index.number_of_replicas: 1
@@ -48,4 +46,3 @@ output.logstash:
 # =================================== Kibana ===================================
 setup.kibana:
   host: "localhost:5601"
-

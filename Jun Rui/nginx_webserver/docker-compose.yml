@@ -51,11 +51,7 @@ services:
         ipv4_address: 192.168.91.22
     external_links: 
       - elk-docker-compose_logstash
-    healthcheck:
-      test: heartbeat test config
-      interval: 30s
-      timeout: 15s
-      retries: 5
+
 
 networks:
   elk-docker-compose_elastic:

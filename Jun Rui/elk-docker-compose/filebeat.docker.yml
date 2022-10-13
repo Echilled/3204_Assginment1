@@ -17,10 +17,9 @@ filebeat.inputs:
 
 # ======================= Elasticsearch template setting =======================
 
-setup.template.settings:
-  index.number_of_shards: 1
-  #index.codec: best_compression
-  #_source.enabled: false
+setup.template.name: "filebeat"
+setup.template.pattern: "nginx_filebeat"
+
 
 #================================ Logging =====================================
 
@@ -59,6 +58,9 @@ output.logstash:
 processors:
   - add_host_metadata:
       when.not.contains.tags: forwarded
+      geo:
+        name: nginx_heartbeat
   - add_cloud_metadata: ~
-  - add_docker_metadata: ~
+  - add_docker_metadata:
+      host: "unix:///var/run/docker.sock"
   - add_kubernetes_metadata: ~
