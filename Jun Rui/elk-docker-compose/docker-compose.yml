@@ -14,10 +14,9 @@ services:
       xpack.security.audit.enabled: true
       xpack.license.self_generated.type: trial
       http.host: 0.0.0.0
-      # xpack.monitoring.elasticsearch.username: elastic
-      # xpack.monitoring.elasticsearch.password: changeme
     networks:
-      - elastic
+      elastic:
+        ipv4_address: 192.168.91.10
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
     ports:
@@ -35,7 +34,8 @@ services:
       - "5000:5000"
       - "5044:5044"
     networks:
-      - elastic
+      elastic:
+        ipv4_address: 192.168.91.11
     depends_on:
       - elasticsearch
     configs:
@@ -52,7 +52,8 @@ services:
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
       SERVER_NAME: kibana
     networks:
-      - elastic
+      elastic:
+        ipv4_address: 192.168.91.12
     volumes:
       - kibana:/usr/share/kibana/data
     ports:
@@ -69,7 +70,8 @@ services:
     environment:
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
     networks:
-      - elastic
+      elastic:
+        ipv4_address: 192.168.91.13
     volumes:
       - filebeat:/usr/share/filebeat/data
       - ./logs:/usr/share/filebeat/logs
@@ -91,6 +93,10 @@ services:
 networks:
   elastic:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.91.0/24
+          gateway: 192.168.91.1
 
 
 

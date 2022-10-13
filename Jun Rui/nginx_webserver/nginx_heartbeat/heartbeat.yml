@@ -1,0 +1,51 @@
+heartbeat.monitors:
+- type: http
+  schedule: '@every 5s'
+  urls:
+    - https://localhost:9200
+    - http://localhost:5601
+    - http://192.168.91.20:80
+
+
+- type: icmp
+  schedule: '@every 5s'
+  hosts:
+    - elasticsearch
+    - kibana
+
+
+# ======================= Elasticsearch template setting =======================
+setup.template.name: "nginx_heartbeat"
+setup.template.pattern: "heartbeat"
+setup.template.settings:
+  index.number_of_shards: 1
+  index.number_of_replicas: 1
+
+
+
+processors:
+- add_cloud_metadata:
+
+
+# ================================== Outputs ===================================
+# ------------------------------ Logstash Output -------------------------------
+#Send output to logstash
+output.logstash:
+  hosts: ["logstash:5044"]
+
+
+
+
+# ---------------------------- Elasticsearch Output ----------------------------
+#Send output to elasticsearch
+# output.elasticsearch:
+#   hosts: ["localhost:9200"]
+  # username: elastic
+  # # Read PW from heartbeat.keystore
+  # password: "${ELASTIC_PASSWORD}"
+
+
+# =================================== Kibana ===================================
+setup.kibana:
+  host: "localhost:5601"
+

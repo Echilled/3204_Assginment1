@@ -21,6 +21,7 @@ end
 Vagrant.configure("2") do |config|
 	config.vm.box="hashicorp/bionic64"
 	#config.vm.box="StefanScherer/windows_10"
+	config.vm.network "private_network", ip: "192.168.100.4"
 	config.vm.network "forwarded_port", guest: 9200, host: 9200
 	config.vm.network "forwarded_port", guest: 5601, host: 5601
 	config.vm.define "elastic_stack"
@@ -33,7 +34,5 @@ Vagrant.configure("2") do |config|
 	config.vm.provision "shell", inline: "docker-compose -f /vagrant/elk-docker-compose/docker-compose.yml up -d"
 	config.vm.provision "shell", inline: "docker-compose -f /vagrant/nginx_webserver/docker-compose.yml up -d"
 	
-    #config.vm.provision :docker_compose, yml: ["/elk-docker-compose/docker-compose.yml", "/nginx_webserver/docker-compose.yml"], command_options: {up: "-d"}, run: "always"
-
 end
 

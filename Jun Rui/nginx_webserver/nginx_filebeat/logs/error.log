@@ -82,3 +82,60 @@
 2022/10/12 10:00:48 [notice] 1#1: start worker processes
 2022/10/12 10:00:48 [notice] 1#1: start worker process 31
 2022/10/12 10:01:18 [error] 31#31: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 192.168.128.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "192.168.128.145", referrer: "http://192.168.128.145/"
+2022/10/13 05:29:59 [notice] 1#1: using the "epoll" event method
+2022/10/13 05:29:59 [notice] 1#1: nginx/1.23.1
+2022/10/13 05:29:59 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/10/13 05:29:59 [notice] 1#1: OS: Linux 4.15.0-58-generic
+2022/10/13 05:29:59 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/10/13 05:29:59 [notice] 1#1: start worker processes
+2022/10/13 05:29:59 [notice] 1#1: start worker process 31
+2022/10/13 05:31:40 [error] 31#31: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 192.168.128.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "192.168.128.145", referrer: "http://192.168.128.145/"
+2022/10/13 05:49:29 [notice] 1#1: using the "epoll" event method
+2022/10/13 05:49:29 [notice] 1#1: nginx/1.23.1
+2022/10/13 05:49:29 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/10/13 05:49:29 [notice] 1#1: OS: Linux 4.15.0-58-generic
+2022/10/13 05:49:29 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/10/13 05:49:29 [notice] 1#1: start worker processes
+2022/10/13 05:49:29 [notice] 1#1: start worker process 30
+2022/10/13 06:06:25 [notice] 1#1: using the "epoll" event method
+2022/10/13 06:06:25 [notice] 1#1: nginx/1.23.1
+2022/10/13 06:06:25 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/10/13 06:06:25 [notice] 1#1: OS: Linux 4.15.0-58-generic
+2022/10/13 06:06:25 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/10/13 06:06:25 [notice] 1#1: start worker processes
+2022/10/13 06:06:25 [notice] 1#1: start worker process 31
+2022/10/13 06:10:30 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/10/13 06:10:30 [notice] 31#31: gracefully shutting down
+2022/10/13 06:10:30 [notice] 31#31: exiting
+2022/10/13 06:10:30 [notice] 31#31: exit
+2022/10/13 06:10:30 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2022/10/13 06:10:30 [notice] 1#1: worker process 31 exited with code 0
+2022/10/13 06:10:30 [notice] 1#1: exit
+2022/10/13 06:10:31 [notice] 1#1: using the "epoll" event method
+2022/10/13 06:10:31 [notice] 1#1: nginx/1.23.1
+2022/10/13 06:10:31 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/10/13 06:10:31 [notice] 1#1: OS: Linux 4.15.0-58-generic
+2022/10/13 06:10:31 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/10/13 06:10:31 [notice] 1#1: start worker processes
+2022/10/13 06:10:31 [notice] 1#1: start worker process 30
+2022/10/13 07:11:57 [notice] 1#1: using the "epoll" event method
+2022/10/13 07:11:57 [notice] 1#1: nginx/1.23.1
+2022/10/13 07:11:57 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/10/13 07:11:57 [notice] 1#1: OS: Linux 4.15.0-58-generic
+2022/10/13 07:11:57 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/10/13 07:11:57 [notice] 1#1: start worker processes
+2022/10/13 07:11:57 [notice] 1#1: start worker process 31
+2022/10/13 07:23:02 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/10/13 07:23:02 [notice] 31#31: gracefully shutting down
+2022/10/13 07:23:02 [notice] 31#31: exiting
+2022/10/13 07:23:02 [notice] 31#31: exit
+2022/10/13 07:23:02 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2022/10/13 07:23:02 [notice] 1#1: worker process 31 exited with code 0
+2022/10/13 07:23:02 [notice] 1#1: exit
+2022/10/13 07:23:04 [notice] 1#1: using the "epoll" event method
+2022/10/13 07:23:04 [notice] 1#1: nginx/1.23.1
+2022/10/13 07:23:04 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/10/13 07:23:04 [notice] 1#1: OS: Linux 4.15.0-58-generic
+2022/10/13 07:23:04 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/10/13 07:23:04 [notice] 1#1: start worker processes
+2022/10/13 07:23:04 [notice] 1#1: start worker process 30

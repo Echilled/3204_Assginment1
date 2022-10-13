@@ -16,11 +16,11 @@ filebeat.inputs:
 
 
 # ======================= Elasticsearch template setting =======================
-
+setup.template.name: "nginx_filebeat"
+setup.template.pattern: "filebeat"
 setup.template.settings:
   index.number_of_shards: 1
-  #index.codec: best_compression
-  #_source.enabled: false
+  index.number_of_replicas: 1
 
 #================================ Logging =====================================
 
@@ -40,12 +40,12 @@ setup.kibana:
 
 
 
-
 # ================================== Outputs ===================================
 # ------------------------------ Logstash Output -------------------------------
 #Send output to logstash
 output.logstash:
   hosts: ["logstash:5044"]
+
 
 
 
