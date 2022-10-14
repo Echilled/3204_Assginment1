@@ -1,0 +1,71 @@
+heartbeat.monitors:
+- type: http
+  schedule: '@every 30s'
+  hosts:
+    # - http://localhost
+    - http://192.168.91.20
+  check.response.status: [200]
+
+- type: tcp
+  schedule: '@every 30s'
+  hosts:
+    - elk
+  ports: [9200, 5044]
+
+- type: icmp
+  schedule: '@every 30s'
+  hosts:
+    - elk
+    - 192.168.91.20
+    # - 172.17.0.3
+
+
+# ======================= Heartbeat Configs =======================
+heartbeat.config.monitors:
+  # If enabled, heartbeat will periodically check the config.monitors path for changes
+  reload.enabled: true
+  # How often to check for changes
+  reload.period: 10s
+
+
+# ======================= Elasticsearch template setting =======================
+setup.template.name: "heartbeat"
+setup.template.pattern: "nginx_heartbeat"
+setup.template.settings:
+  index.number_of_shards: 1
+  index.number_of_replicas: 1
+
+
+
+processors:
+- add_cloud_metadata:
+
+
+# ================================== Outputs ===================================
+# ------------------------------ Logstash Output -------------------------------
+#Send output to logstash
+output:
+  logstash:
+    enabled: true
+    hosts:
+      - elk:5044
+    timeout: 15
+    ssl:
+      certificate_authorities:
+      - /etc/pki/tls/certs/logstash-beats.crt
+
+
+
+
+# ---------------------------- Elasticsearch Output ----------------------------
+#Send output to elasticsearch
+# output.elasticsearch:
+#   hosts: ["localhost:9200"]
+  # username: elastic
+  # # Read PW from heartbeat.keystore
+  # password: "${ELASTIC_PASSWORD}"
+
+
+# =================================== Kibana ===================================
+setup.kibana:
+  host: "localhost:5601"

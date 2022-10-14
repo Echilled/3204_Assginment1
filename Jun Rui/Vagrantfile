@@ -1,0 +1,50 @@
+# Run this file using "vagrant up"
+# use command "vagrant reload [box id/name]" everytime you make change to this file
+
+unless Vagrant.has_plugin?("vagrant-vmware-desktop")
+	system("vagrant plugin install vagrant-vmware-desktop")
+	system("vagrant plugin update vagrant-vmware-desktop")
+	puts "Plugin: vagrant-vmware-desktop installed, please try the command again."
+	exit
+end
+# User is also required to manually install "Vagrant VMware Utility Installtion" when using VMware at
+# https://www.vagrantup.com/docs/providers/vmware/vagrant-vmware-utility
+
+
+Vagrant.configure("2") do |config|
+	config.vm.define "elk" do |elk|
+		elk.vm.network :public_network, ip: "192.168.91.10", netmask: "24", inline: "route add default gw 192.168.91.1"
+		elk.vm.provision "shell", inline: "sysctl -w vm.max_map_count=262144"
+		elk.vm.provider :docker do |d2|
+			d2.name = "ELK"
+			d2.remains_running = true
+			d2.build_dir = "elk-docker"
+			d2.ports = [ "5601:5601", "9200:9200", "5044:5044"]
+		end	
+	end
+	
+	
+	config.vm.define "web" do |web|
+		web.vm.network :public_network, ip: "192.168.91.20", netmask: "24", inline: "route add default gw 192.168.91.1"
+		web.vm.provider :docker do |d3|
+			d3.name = "webserver"
+			d3.remains_running = true
+			d3.build_dir = "elk-docker/nginx-filebeat"
+			d3.ports = ["80:80"]
+		end		
+	end
+
+	config.vm.define "Victim" do |vic|
+		# config.vm.box="hashicorp/bionic64"
+		vic.vm.box="StefanScherer/windows_10"
+		vic.vm.network :public_network, ip: "192.168.91.30", inline: "route add default gw 192.168.91.1"
+		vic.vm.provider "vmware_desktop" do |vmw|
+			vmw.memory = "4096"
+		end
+	end
+	
+end
+
+
+
+#docker.vm.network :public_network, bridge: "eth0", docker_network__ip_range: "192.168.91.20/30"
