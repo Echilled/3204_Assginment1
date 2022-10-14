@@ -144,8 +144,7 @@ def main():
     # print(df.columns[df.isna().any()].tolist())
 
     drop_redundant_columns(df, ['_score'])
-    print('Row count is:', len(df.index))
-    print('Column count is:', df.shape[1])
+
     # df = universal_timestamp_converter(df)
 
     # Move actual time to first column for convenience
@@ -158,7 +157,9 @@ def main():
     df.reset_index(drop=True, inplace=True)
     get_keyword_columns(df)
     # get_null_counts(df)
-    # output_to_csv(df)
+    output_to_csv(df)
+    print('Row count is:', len(df.index))
+    print('Column count is:', df.shape[1])
 
 
 if __name__ == "__main__":
