@@ -10,8 +10,6 @@ INTEGER_REGEX = r'^(?:0|(?:[1-9](?:\d{0,2}(?:,\d{3})+|\d*)))$'
 MAC_ADDRESS_REGEX = ("^([0-9A-Fa-f]{2}[:-])" +
                      "{5}([0-9A-Fa-f]{2})|" + "([0-9a-fA-F]{4}\\." + "[0-9a-fA-F]{4}\\." + "[0-9a-fA-F]{4})$")
 
-TIME_REGEX = ""
-
 BAD_VALUE_LIST = ['-']
 
 
@@ -94,7 +92,7 @@ def sort_time_ascending(dataframe):  # dont look at timestamp but event.start in
     return dataframe
 
 
-def get_columns_with_all_same_values(dataframe):  # remove columns with the same values as it does not help analysis
+def get_columns_with_all_single_values(dataframe):  # remove columns with the same values as it does not help analysis
     same_value_columns = []
     for column in dataframe.columns:
         if (dataframe[column] == dataframe[column][0]).all():
@@ -103,7 +101,7 @@ def get_columns_with_all_same_values(dataframe):  # remove columns with the same
 
 
 def drop_redundant_columns(dataframe, columns):
-    columns_to_remove = get_columns_with_all_same_values(dataframe)
+    columns_to_remove = get_columns_with_all_single_values(dataframe)
     columns_to_remove = columns_to_remove + columns
     columns_to_remove = list(set(columns_to_remove))  # remove duplicates
     for column in columns_to_remove:
@@ -119,9 +117,20 @@ def output_to_csv(dataframe):
     dataframe.to_csv('port_scan_logs/cleaned.csv')
 
 
+def get_keyword_columns(dataframe):  # only drop keyword columns if it matches to the original column
+    keyword_cols = [col for col in dataframe.columns if 'keyword' in col]
+    cols_to_remove = []
+    for column in keyword_cols:
+        original_column = column.split('.k')[0]
+        if dataframe[column].equals(dataframe[original_column]):
+            cols_to_remove.append(column)
+    for column in keyword_cols:
+        dataframe.drop(column, axis=1, inplace=True)
+    return cols_to_remove
+
+
 def main():
     df = pd.read_csv(r'port_scan_logs/real_port_scan_requests_2.csv')
-    get_columns_with_all_same_values(df)
     df = df.replace(',', '', regex=True)
     print('Row count is:', len(df.index))
     print('Column count is:', df.shape[1])
@@ -147,7 +156,8 @@ def main():
 
     # Ensure the index column is correct
     df.reset_index(drop=True, inplace=True)
-    get_columns_with_all_same_values(df)
+    get_keyword_columns(df)
+    # get_null_counts(df)
     # output_to_csv(df)
 
 
