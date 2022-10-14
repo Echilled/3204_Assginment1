@@ -114,7 +114,7 @@ def get_null_counts(dataframe):
 
 
 def output_to_csv(dataframe):
-    dataframe.to_csv('port_scan_logs/cleaned.csv')
+    dataframe.to_csv(r'Webserver_logs/cleaned.csv')
 
 
 def get_keyword_columns(dataframe):  # only drop keyword columns if it matches to the original column
@@ -134,7 +134,7 @@ def filter_only_webserver_traffic(dataframe): # Filter 192.168.91.1
 
 
 def main():
-    df = pd.read_csv(r'port_scan_logs/real_port_scan_requests_2.csv')
+    df = pd.read_csv(r'Webserver_logs/real_port_scan_requests_2.csv')
     df = df.replace(',', '', regex=True)
     print('Row count is:', len(df.index))
     print('Column count is:', df.shape[1])
