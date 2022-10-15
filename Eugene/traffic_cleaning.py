@@ -114,7 +114,7 @@ def get_null_counts(dataframe):
 
 
 def output_to_csv(dataframe):
-    dataframe.to_csv(r'Webserver_logs/cleaned.csv')
+    dataframe.to_csv(r'Webserver_logs/traffic_cleaned.csv')
 
 
 def get_keyword_columns(dataframe):  # only drop keyword columns if it matches to the original column
