@@ -13,7 +13,7 @@ end
 
 Vagrant.configure("2") do |config|
 	config.vm.define "elk" do |elk|
-		elk.vm.network :public_network, ip: "192.168.91.10", netmask: "24", inline: "route add default gw 192.168.91.1"
+		elk.vm.network :private_network, ip: "192.168.91.10", netmask: "24"
 		elk.vm.provision "shell", inline: "sysctl -w vm.max_map_count=262144"
 		elk.vm.provider :docker do |d2|
 			d2.name = "ELK"
@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
 	
 	
 	config.vm.define "web" do |web|
-		web.vm.network :public_network, ip: "192.168.91.20", netmask: "24", inline: "route add default gw 192.168.91.1"
+		web.vm.network :private_network, ip: "192.168.91.20", netmask: "24"
 		web.vm.provider :docker do |d3|
 			d3.name = "webserver"
 			d3.remains_running = true
@@ -34,17 +34,29 @@ Vagrant.configure("2") do |config|
 		end		
 	end
 
+
 	config.vm.define "Victim" do |vic|
-		# config.vm.box="hashicorp/bionic64"
 		vic.vm.box="StefanScherer/windows_10"
-		vic.vm.network :public_network, ip: "192.168.91.30", inline: "route add default gw 192.168.91.1"
+		vic.vm.network :private_network, ip: "192.168.91.30",  netmask: "24"
+		vic.vm.provision "shell", path:"elk-docker/windows-victim/enabled_network_discovery.ps1", privileged: true
+		vic.vm.provision "file", source: "elk-docker/windows-victim/filebeat", destination: "C:/Program Files/Filebeat"
+		vic.vm.provision "file", source: "elk-docker/windows-victim/winlogbeat", destination: "C:/Program Files/Winlogbeat"
+		vic.vm.provision "shell", path:"elk-docker/windows-victim/install_filebeat.ps1", privileged: true
+		vic.vm.provision "shell", path:"elk-docker/windows-victim/install_winlogbeat.ps1", privileged: true
 		vic.vm.provider "vmware_desktop" do |vmw|
 			vmw.memory = "4096"
+		end
+	end
+
+	
+	config.vm.define "Attacker" do |att|
+		att.vm.box="kalilinux/rolling"
+		att.vm.network :private_network, ip: "192.168.91.100", netmask: "24"
+		att.vm.provider "vmware_desktop" do |vmw1|
+			vmw1.memory = "4096"
 		end
 	end
 	
 end
 
 
-
-#docker.vm.network :public_network, bridge: "eth0", docker_network__ip_range: "192.168.91.20/30"
