@@ -20,12 +20,6 @@ def parse_datetime(x):
     return dt.replace(tzinfo=pytz.FixedOffset(dt_tz))
 
 
-def remove_df_entry(dataframe, column, list):
-    for bad_value in list:
-        dataframe.drop(dataframe[dataframe[column] == bad_value].index, inplace=True)
-    return dataframe
-
-
 def check_ip_addresses(dataframe):
     ipaddr_columns = ['source_ip']
     wrong_list = []
