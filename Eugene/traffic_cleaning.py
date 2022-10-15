@@ -130,7 +130,9 @@ def get_keyword_columns(dataframe):  # only drop keyword columns if it matches t
 
 
 def filter_only_webserver_traffic(dataframe): # Filter 192.168.91.1
-    pass
+    dataframe = dataframe.loc[(dataframe['destination.ip'] == '192.168.91.1') |
+                              (dataframe['source.ip'] == '192.168.91.1')]
+    return dataframe
 
 
 def main():
@@ -158,9 +160,10 @@ def main():
     df.insert(1, 'event.end', second_column)
 
     # Ensure the index column is correct
-    df.reset_index(drop=True, inplace=True)
     get_keyword_columns(df)
+    df = filter_only_webserver_traffic(df)
     # get_null_counts(df)
+    df.reset_index(drop=True, inplace=True)
     output_to_csv(df)
     print('Row count is:', len(df.index))
     print('Column count is:', df.shape[1])
