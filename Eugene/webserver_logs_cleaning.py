@@ -2,6 +2,7 @@ import pandas as pd
 from datetime import datetime
 import pytz
 import re
+import ipaddress
 
 PATH = 'Webserver_logs/access.log'
 
@@ -19,7 +20,25 @@ def parse_datetime(x):
     return dt.replace(tzinfo=pytz.FixedOffset(dt_tz))
 
 
-def format_data(dataframe):
+def remove_df_entry(dataframe, column, list):
+    for bad_value in list:
+        dataframe.drop(dataframe[dataframe[column] == bad_value].index, inplace=True)
+    return dataframe
+
+
+def check_ip_addresses(dataframe):
+    ipaddr_columns = ['source_ip']
+    wrong_list = []
+    for column in ipaddr_columns:
+        for value in dataframe[column].values:
+            try:
+                ipaddress.ip_address(value)
+            except ValueError:
+                wrong_list.append(value)
+    return wrong_list
+
+
+def clean_data(dataframe):
 
     # Get resource URI:
     request = dataframe.pop('request').str.split()
@@ -37,6 +56,12 @@ def format_data(dataframe):
         r'.*?bot|.*?spider|.*?crawler|.*?slurp', flags=re.I).fillna(False)]
 
     dataframe = dataframe[~dataframe['source_ip'].str.startswith('123.125.71.')]  # Baidu IPs.
+
+    # Removing everything that is not an ip
+    for not_ip in check_ip_addresses(dataframe):
+        dataframe = dataframe[~dataframe['source_ip'].str.startswith(not_ip)]
+
+    return dataframe
 
 
 def output_to_csv(dataframe):
@@ -60,8 +85,8 @@ def main():
                     'referer': parse_str,
                     'user_agent': parse_str})
 
-    format_data(df)
-    print(df.head())
+    df = clean_data(df)
+    df.reset_index(drop=True, inplace=True)
     output_to_csv(df)
 
 
