@@ -1,5 +1,5 @@
 import pandas as pd
-
+import numpy as np
 
 PATH = 'Webserver_logs/fw_logs.txt'
 
@@ -51,10 +51,15 @@ def drop_redundant_cols(dataframe):
     dataframe.dropna(axis=1, how='all', thresh=None, subset=None, inplace=True)
 
 
+def replace_blank_values(dataframe):
+    dataframe = dataframe.replace(r'^\s*$', np.nan, regex=True, inplace=True)
+
+
 def main():
     df = format_data(PATH)
     df.reset_index(drop=True, inplace=True)
     drop_redundant_cols(df)
+    replace_blank_values(df)
     print(df)
     output_to_csv(df)
 
