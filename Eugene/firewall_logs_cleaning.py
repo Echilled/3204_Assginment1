@@ -43,16 +43,13 @@ def format_data(file):
 
 def drop_redundant_cols(dataframe):
     if get_columns_with_all_single_values(dataframe):
-        print(get_columns_with_all_single_values(dataframe))
         for column in get_columns_with_all_single_values(dataframe):
             dataframe.drop(column, axis=1, inplace=True)
-    else:
-        print("nothing")
     dataframe.dropna(axis=1, how='all', thresh=None, subset=None, inplace=True)
 
 
 def replace_blank_values(dataframe):
-    dataframe = dataframe.replace(r'^\s*$', np.nan, regex=True, inplace=True)
+    dataframe.replace(r'^\s*$', np.nan, regex=True, inplace=True)
 
 
 def main():
