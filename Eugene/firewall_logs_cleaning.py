@@ -19,7 +19,12 @@ def get_columns_with_all_single_values(dataframe):  # remove columns with the sa
     for column in dataframe.columns:
         if (dataframe[column] == dataframe[column][0]).all():
             same_value_columns.append(column)
-    return same_value_columns
+    print(same_value_columns)
+    # return same_value_columns
+
+
+def output_to_csv(dataframe):
+    dataframe.to_csv(r'Webserver_logs/firewall_logs.csv')
 
 
 def format_data(file):
@@ -37,11 +42,17 @@ def format_data(file):
     return df
 
 
+def drop_redundant_cols(dataframe):
+    if get_columns_with_all_single_values(dataframe):
+        print("hi")
+    else:
+        print("nothing")
+
+
 def main():
     df = format_data(PATH)
     df.reset_index(drop=True, inplace=True)
-    print(df)
-    # get_columns_with_all_single_values(df)
+    drop_redundant_cols(df)
 
 
 if __name__ == "__main__":
