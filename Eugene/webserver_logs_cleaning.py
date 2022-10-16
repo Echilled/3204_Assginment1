@@ -81,6 +81,7 @@ def main():
 
     df = clean_data(df)
     df.reset_index(drop=True, inplace=True)
+    df.dropna(axis=1, how='all', thresh=None, subset=None, inplace=True)
     output_to_csv(df)
 
 

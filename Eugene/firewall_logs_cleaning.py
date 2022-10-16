@@ -43,11 +43,12 @@ def format_data(file):
 
 def drop_redundant_cols(dataframe):
     if get_columns_with_all_single_values(dataframe):
+        print(get_columns_with_all_single_values(dataframe))
         for column in get_columns_with_all_single_values(dataframe):
-            print(column)
             dataframe.drop(column, axis=1, inplace=True)
     else:
         print("nothing")
+    dataframe.dropna(axis=1, how='all', thresh=None, subset=None, inplace=True)
 
 
 def main():
