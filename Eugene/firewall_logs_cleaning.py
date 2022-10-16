@@ -14,6 +14,14 @@ def get_headers(file):
     return headers
 
 
+def get_columns_with_all_single_values(dataframe):  # remove columns with the same values as it does not help analysis
+    same_value_columns = []
+    for column in dataframe.columns:
+        if (dataframe[column] == dataframe[column][0]).all():
+            same_value_columns.append(column)
+    return same_value_columns
+
+
 def format_data(file):
     headers = get_headers(file)
     df = pd.read_csv(
@@ -26,11 +34,14 @@ def format_data(file):
         names=headers,
     )
     df = df.iloc[4:]
-    print(df)
+    return df
 
 
 def main():
-    format_data(PATH)
+    df = format_data(PATH)
+    df.reset_index(drop=True, inplace=True)
+    print(df)
+    # get_columns_with_all_single_values(df)
 
 
 if __name__ == "__main__":
