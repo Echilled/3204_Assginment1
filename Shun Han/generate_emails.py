@@ -11,6 +11,7 @@ import email
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
+import mimetypes
 
 from essential_generators import DocumentGenerator
 from essential_generators import MarkovTextGenerator
@@ -74,7 +75,7 @@ def makeMultipartMessage(subject, from_, to, date, dateFormat, textBody):
     return msg
 
 
-def addAttachment(subject, filename, contentType, sender, recepient, base64Encode=True):
+def addAttachment(subject, filename, sender, recepient, body="", base64Encode=True):
     msg = MIMEMultipart()
 
     msg["Subject"] = subject
@@ -82,6 +83,9 @@ def addAttachment(subject, filename, contentType, sender, recepient, base64Encod
     msg["To"] = recepient
     msg["Date"] = datetime.datetime.now().strftime(DATE_FORMAT_1)
 
+    msg.attach(MIMEText(body, "html"))
+
+    contentType = mimetypes.guess_type(filename)[0]
     contentTypeSplit = contentType.split("/")
 
     part = MIMEBase(contentTypeSplit[0], contentTypeSplit[1])
@@ -133,15 +137,15 @@ def main():
                 )
                 sendMail(msg)
         elif len(sys.argv) == 2 and sys.argv[1].lower() == "-h":
-            print("Usage:\npython generate_emails.py <int>: generate x number of email traffic\npython generate_emails.py <subject> <filename> <content type> <sender email> <recipient email> : sends an email with a file attachment to the recipient address with the sender's address")
+            print("Usage:\npython generate_emails.py <int>: generate x number of email traffic\npython generate_emails.py <subject> <filename> <sender email> <recipient email> : sends an email with a file attachment to the recipient address with the sender's address")
 
-        elif len(sys.argv) == 6:
-            # subject, filename, contentType, sender, recepient
+        elif len(sys.argv) == 5:
+            # subject, filename, sender, recepient
             new_msg = addAttachment(
-                sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+                sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
             sendMail(new_msg)
         else:
-            print("Usage:\npython generate_emails.py <int>: generate x number of email traffic\npython generate_emails.py <subject> <filename> <content type> <sender email> <recipient email> : sends an email with a file attachment to the recipient address with the sender's address")
+            print("Usage:\npython generate_emails.py <int>: generate x number of email traffic\npython generate_emails.py <subject> <filename> <sender email> <recipient email> : sends an email with a file attachment to the recipient address with the sender's address")
 
     except Exception as e:
         print(
