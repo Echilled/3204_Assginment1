@@ -1,9 +1,12 @@
+from email.message import Message
 import requests
 import json
 import pandas as pd
 
 # Change IP address of Mail server
-r = requests.get("http://192.168.1.181:8025/api/v2/messages?limit=250")
+# ADDRESS = "http://192.168.91.5:8025/api/v2/messages"
+ADDRESS = "http://192.168.1.181:8025/api/v2/messages"
+r = requests.get(f"{ADDRESS}?limit=250")
 total = json.loads(r.text)["total"]
 
 results = []
@@ -18,11 +21,11 @@ def filter_results(data):
 
 if total > 250:
     for i in range((total // 250) + 1):
-        r = requests.get(f"http://192.168.1.181:8025/api/v2/messages?limit=250&start={i*250}")
+        r = requests.get(f"{ADDRESS}?limit=250&start={i*250}")
         data = json.loads(r.text)["items"]
         filter_results(data)
 else:
-    r = requests.get("http://192.168.1.181:8025/api/v2/messages?limit=250")
+    r = requests.get(f"{ADDRESS}?limit=250")
     data = json.loads(r.text)["items"]
     filter_results(data)
 
