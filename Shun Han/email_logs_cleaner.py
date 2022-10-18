@@ -51,18 +51,18 @@ try:
     df["Origin IP"] = df["Origin IP"].str.extract("(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})")
 
     # Sender
-    df["Sender"] = df["Headers"].str.extract("('From': \['[\w@\.]+'\])")
-    df["Sender"] = df["Sender"].str.extract("(\['[\w@\.]+'\])")
+    df["Sender"] = df["Headers"].str.extract("('From': \['[\w@\.]*'\])")
+    df["Sender"] = df["Sender"].str.extract("(\['[\w@\.]*'\])")
     df["Sender"] = df["Sender"].str.replace(r"[\[\]']", '', regex=True)
 
     # Recipient
-    df["Recipient"] = df["Headers"].str.extract("('To': \['[\w@\.]+'\])")
-    df["Recipient"] = df["Recipient"].str.extract("(\['[\w@\.]+'\])")
+    df["Recipient"] = df["Headers"].str.extract("('To': \['[\w@\.]*'\])")
+    df["Recipient"] = df["Recipient"].str.extract("(\['[\w@\.]*'\])")
     df["Recipient"] = df["Recipient"].str.replace(r"[\[\]']", '', regex=True)
 
     # Subject
-    df["Subject"] = df["Headers"].str.extract("('Subject': \['[\w\?\s=\-]+'\])")
-    df["Subject"] = df["Subject"].str.extract("(\['[\w\?\s=\-]+'\])")
+    df["Subject"] = df["Headers"].str.extract("('Subject': \['[\w\?\s=\-]*'\])")
+    df["Subject"] = df["Subject"].str.extract("(\['[\w\?\s=\-]*'\])")
     df["Subject"] = df["Subject"].str.replace(r"[\[\]']", '', regex=True)
 
     # Email Body
