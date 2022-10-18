@@ -11,15 +11,18 @@ import email
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
-import mimetypes
 
-from essential_generators import DocumentGenerator
-from essential_generators import MarkovTextGenerator
-from essential_generators import MarkovWordGenerator
+fromAddresses = (
+    "adam@example.com",
+    "test@test.com",
+    "test@gmail.com",
+    "fabio@yahoo.com",
+)
 
-gen = DocumentGenerator()
-gen = DocumentGenerator(text_generator=MarkovTextGenerator(),
-                        word_generator=MarkovWordGenerator())
+toAddresses = (
+    "admin@example.com",
+    "test@example.com"
+)
 
 DATE_FORMAT_1 = "%a, %d %b %Y %H:%M:%S -0700 (UTC)"
 
@@ -29,22 +32,20 @@ address = "192.168.1.181"
 smtpPort = 1025
 
 
-def makeHTMLMessage(subject, from_, to, date, dateFormat, body):
+def makeHTMLMessage(subject, date, dateFormat, body):
     msg = MIMEMultipart()
-    if random.choice([True, False]):
-        body += "\n" + gen.url()
     html = MIMEText(body, "html")
 
     msg["Subject"] = subject
-    msg["From"] = from_
-    msg["To"] = to
+    msg["From"] = getRandomFrom()
+    msg["To"] = getRandomTo()
     msg["Date"] = date.strftime(dateFormat)
 
     msg.attach(html)
     return msg
 
 
-def makeTextMessage(subject, from_, to, date, dateFormat, body, multipart=False):
+def makeTextMessage(subject, date, dateFormat, body, multipart=False):
     if multipart:
         msg = MIMEMultipart()
         msg.attach(MIMEText(body))
@@ -52,22 +53,35 @@ def makeTextMessage(subject, from_, to, date, dateFormat, body, multipart=False)
         msg = MIMEText(body)
 
     msg["Subject"] = subject
-    msg["From"] = from_
-    msg["To"] = to
+    msg["From"] = getRandomFrom()
+    msg["To"] = getRandomTo()
+    msg["Date"] = date.strftime(dateFormat)
+
+    return msg
+    
+def makeTextMessage2(subject, sender, recipient, date, dateFormat, body, multipart=False):
+    if multipart:
+        msg = MIMEMultipart()
+        msg.attach(MIMEText(body))
+    else:
+        msg = MIMEText(body)
+
+    msg["Subject"] = subject
+    msg["From"] = sender
+    msg["To"] = recipient
     msg["Date"] = date.strftime(dateFormat)
 
     return msg
 
 
-def makeMultipartMessage(subject, from_, to, date, dateFormat, textBody):
+def makeMultipartMessage(subject, date, dateFormat, textBody, htmlBody):
     msg = MIMEMultipart()
-    htmlBody = gen.paragraph()
     html = MIMEText(htmlBody, "html")
     text = MIMEText(textBody)
 
     msg["Subject"] = subject
-    msg["From"] = from_
-    msg["To"] = to
+    msg["From"] = getRandomFrom()
+    msg["To"] = getRandomTo()
     msg["Date"] = date.strftime(dateFormat)
 
     msg.attach(text)
@@ -75,7 +89,7 @@ def makeMultipartMessage(subject, from_, to, date, dateFormat, textBody):
     return msg
 
 
-def addAttachment(subject, filename, sender, recepient, body="", base64Encode=True):
+def addAttachment(subject, filename, contentType, sender, recepient, base64Encode=True):
     msg = MIMEMultipart()
 
     msg["Subject"] = subject
@@ -83,9 +97,6 @@ def addAttachment(subject, filename, sender, recepient, body="", base64Encode=Tr
     msg["To"] = recepient
     msg["Date"] = datetime.datetime.now().strftime(DATE_FORMAT_1)
 
-    msg.attach(MIMEText(body, "html"))
-
-    contentType = mimetypes.guess_type(filename)[0]
     contentTypeSplit = contentType.split("/")
 
     part = MIMEBase(contentTypeSplit[0], contentTypeSplit[1])
@@ -99,6 +110,14 @@ def addAttachment(subject, filename, sender, recepient, body="", base64Encode=Tr
     return msg
 
 
+def getRandomFrom():
+    return fromAddresses[random.randint(0, len(fromAddresses) - 1)]
+
+
+def getRandomTo():
+    return toAddresses[random.randint(0, len(toAddresses) - 1)]
+
+
 def sendMail(msg):
     if not useSSL:
         server = smtplib.SMTP("{0}:{1}".format(address, smtpPort))
@@ -108,50 +127,57 @@ def sendMail(msg):
     fromAddress = msg["From"]
     to = [msg["To"]]
 
-    try:
-        server.sendmail(fromAddress, to, msg.as_string())
-        server.quit()
-    except UnicodeEncodeError as e:
-        pass
+    server.sendmail(fromAddress, to, msg.as_string())
+    server.quit()
+
 #
 # Seed the random generator
 #
-
-
 def main():
     random.seed(datetime.datetime.now().timestamp())
 
-    choice = [makeTextMessage, makeHTMLMessage, makeMultipartMessage]
+    choice = [makeHTMLMessage(
+            "Weird TO Address",
+            datetime.datetime.now(),
+            DATE_FORMAT_1,
+            "<p>This is an email sent to an address with 'data' in the TO field.</p>"
+        ), makeTextMessage(
+            "Plain Text Email",
+            datetime.datetime.now(),
+            DATE_FORMAT_1,
+            "This is a plain text email.\n\nSincerely,\nAdam Presley"
+        ), makeTextMessage(
+            "Plain Text Email with special characters (á, é, í, ó, ú)",
+            datetime.datetime.now(),
+            DATE_FORMAT_1,
+            "This is a plain text email with special characters in the subject.\n(á, é, í, ó, ú)\n\nSincerely,\nAdam Presley"
+        )]
 
     try:
         if len(sys.argv) == 2 and sys.argv[1].isnumeric():
             for _ in range(int(sys.argv[1])):
-                func = random.choice(choice)
-                msg = func(
-                    random.choice([gen.word(), gen.sentence()]),
-                    gen.email(),
-                    gen.email(),
-                    datetime.datetime.now(),
-                    DATE_FORMAT_1,
-                    random.choice([gen.paragraph(), gen.sentence()])
-                )
-                sendMail(msg)
-        elif len(sys.argv) == 2 and sys.argv[1].lower() == "-h":
-            print("Usage:\npython generate_emails.py <int>: generate x number of email traffic\npython generate_emails.py <subject> <filename> <sender email> <recipient email> : sends an email with a file attachment to the recipient address with the sender's address")
-
-        elif len(sys.argv) == 5:
-            # subject, filename, sender, recepient
-            new_msg = addAttachment(
-                sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
+                msg = random.choice(choice)
+                sendMail(msg)    
+        elif len(sys.argv) == 3:
+            msg = makeTextMessage2(
+            "Plain Text Email", sys.argv[1], sys.argv[2], 
+            datetime.datetime.now(),
+            DATE_FORMAT_1,
+            "This is a plain text email.\n\nSincerely,\nAdam Presley")
+            sendMail(msg)
+        elif len(sys.argv) == 6:
+            # subject, filename, contentType, sender, recepient
+            new_msg = addAttachment(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
             sendMail(new_msg)
         else:
-            print("Usage:\npython generate_emails.py <int>: generate x number of email traffic\npython generate_emails.py <subject> <filename> <sender email> <recipient email> : sends an email with a file attachment to the recipient address with the sender's address")
+            msg = random.choice(choice)
+
+            sendMail(msg)
+      
 
     except Exception as e:
-        print(
-            f"An error occurred while trying to connect and send the email: {e}")
+        print(f"An error occurred while trying to connect and send the email: {e}")
         print(sys.exc_info())
-
 
 if __name__ == "__main__":
     main()

@@ -1,12 +1,9 @@
-from email.message import Message
 import requests
 import json
 import pandas as pd
 
 # Change IP address of Mail server
-# ADDRESS = "http://192.168.91.5:8025/api/v2/messages"
-ADDRESS = "http://192.168.1.181:8025/api/v2/messages"
-r = requests.get(f"{ADDRESS}?limit=250")
+r = requests.get("http://192.168.1.181:8025/api/v2/messages?limit=250")
 total = json.loads(r.text)["total"]
 
 results = []
@@ -21,19 +18,18 @@ def filter_results(data):
 
 if total > 250:
     for i in range((total // 250) + 1):
-        r = requests.get(f"{ADDRESS}?limit=250&start={i*250}")
+        r = requests.get(f"http://192.168.1.181:8025/api/v2/messages?limit=250&start={i*250}")
         data = json.loads(r.text)["items"]
         filter_results(data)
 else:
-    r = requests.get(f"{ADDRESS}?limit=250")
+    r = requests.get("http://192.168.1.181:8025/api/v2/messages?limit=250")
     data = json.loads(r.text)["items"]
     filter_results(data)
 
 df = pd.DataFrame(results)
 
-pd.options.display.max_columns = None
-pd.options.display.max_colwidth = None
-# ID, Date Created, Origin IP, Sender, Recipient, Subject, Body, File name, File type, File size, Email size
+
+# ID, Date Created, Sender, Recipient, Subject, Body, File name, File type, File size, Email size
 try:
     # ID
     df["Headers"] = df["Headers"].astype(str)
@@ -46,23 +42,19 @@ try:
     df["Date"] = df["Date"].str.extract("(\['.+'\])")
     df["Date"] = df["Date"].str.replace(r"([\['\]-])", '', regex=True)
 
-    # Origin IP
-    df["Origin IP"] = df["Headers"].str.extract("('Received':\s\['from\s\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])")
-    df["Origin IP"] = df["Origin IP"].str.extract("(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})")
-
     # Sender
-    df["Sender"] = df["Headers"].str.extract("('From': \['[\w@\.]*'\])")
-    df["Sender"] = df["Sender"].str.extract("(\['[\w@\.]*'\])")
+    df["Sender"] = df["Headers"].str.extract("('From': \['[\w@\.]+'\])")
+    df["Sender"] = df["Sender"].str.extract("(\['[\w@\.]+'\])")
     df["Sender"] = df["Sender"].str.replace(r"[\[\]']", '', regex=True)
 
     # Recipient
-    df["Recipient"] = df["Headers"].str.extract("('To': \['[\w@\.]*'\])")
-    df["Recipient"] = df["Recipient"].str.extract("(\['[\w@\.]*'\])")
+    df["Recipient"] = df["Headers"].str.extract("('To': \['[\w@\.]+'\])")
+    df["Recipient"] = df["Recipient"].str.extract("(\['[\w@\.]+'\])")
     df["Recipient"] = df["Recipient"].str.replace(r"[\[\]']", '', regex=True)
 
     # Subject
-    df["Subject"] = df["Headers"].str.extract("('Subject': \['[\w\?\s=\-]*'\])")
-    df["Subject"] = df["Subject"].str.extract("(\['[\w\?\s=\-]*'\])")
+    df["Subject"] = df["Headers"].str.extract("('Subject': \['[\w\?\s=\-]+'\])")
+    df["Subject"] = df["Subject"].str.extract("(\['[\w\?\s=\-]+'\])")
     df["Subject"] = df["Subject"].str.replace(r"[\[\]']", '', regex=True)
 
     # Email Body
@@ -75,8 +67,8 @@ try:
     df["Attachment"] = df["Attachment"].str.replace(r"([=\"]*)", '', regex=True)
 
     # File type
-    df["File type"] = df["Parts"].str.extract("('Content-Type': \['[\w\/\-\.]*'\])")
-    df["File type"] = df["File type"].str.extract("(\['[\w\/\-\.]*'\])")
+    df["File type"] = df["Parts"].str.extract("('Content-Type': \['[\w\/\-]+'\])")
+    df["File type"] = df["File type"].str.extract("(\['[\w\/\-]+'\])")
     df["File type"] = df["File type"].str.replace(r"([\[\]'])", '', regex=True)
 
     # File size
@@ -86,10 +78,10 @@ try:
     # Email size
     df["Email size"] = df["Size"]
 
-    df = df[["Message-ID", "Date", "Origin IP", "Sender", "Recipient", "Subject", "Email body", "Attachment", "File type", "File size", "Email size"]]
-    df.columns = ['ID', 'Date Created', 'Origin IP', 'Sender', 'Recipient', 'Subject', 'Email Body', 'File name', 'File type', 'File size', 'Email Size']
+    df = df[["Message-ID", "Date", "Sender", "Recipient", "Subject", "Email body", "Attachment", "File type", "File size", "Email size"]]
+    df.columns = ['ID', 'Date Created', 'Sender', 'Recipient', 'Subject', 'Email Body', 'File name', 'File type', 'File size', 'Email Size']
 
-    df.to_csv("cleaned_email_logs.csv")
+    df.to_csv("out.csv")
 
 
 except KeyError:
