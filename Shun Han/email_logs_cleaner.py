@@ -89,7 +89,7 @@ try:
     df = df[["Message-ID", "Date", "Origin IP", "Sender", "Recipient", "Subject", "Email body", "Attachment", "File type", "File size", "Email size"]]
     df.columns = ['ID', 'Date Created', 'Origin IP', 'Sender', 'Recipient', 'Subject', 'Email Body', 'File name', 'File type', 'File size', 'Email Size']
 
-    df.to_csv("out.csv")
+    df.to_csv("cleaned_email_logs.csv")
 
 
 except KeyError:
