@@ -74,15 +74,15 @@ def replace_empty_bytes(dataframe, column):
     dataframe[column] = dataframe[column].replace('-', '0')
 
 
-def universal_timestamp_converter(dataframe):
+def universal_timestamp_converter(dataframe, column):
     new_timestamp_list = []
-    for timestamp in dataframe['event.start'].values:
+    for timestamp in dataframe[column].values:
         timestamp = timestamp.split(' @')
         timestamp[0] = str(datetime.datetime.strptime(timestamp[0], '%b %d %Y')).split(' ')[0]
-        timestamp = ' '.join(timestamp)
+        timestamp = ''.join(timestamp)
         # timestamp = '\'' + timestamp  # for excel
         new_timestamp_list.append(timestamp)
-    dataframe['event.start'] = new_timestamp_list
+    dataframe[column] = new_timestamp_list
     # print(dataframe['event.start'].values)
     return dataframe
 
@@ -135,6 +135,10 @@ def filter_only_webserver_traffic(dataframe): # Filter 192.168.91.1
     return dataframe
 
 
+def remove_duplicate_ids_columns(dataframe):
+    dataframe.drop('_id', axis=1, inplace=True)
+
+
 def main():
     df = pd.read_csv(r'Webserver_logs/real_port_scan_requests_2.csv')
     df = df.replace(',', '', regex=True)
@@ -145,7 +149,9 @@ def main():
     check_mac_adresses(df)
     clean_bytes_values(df)
     df = remove_null_columns(df)
-    universal_timestamp_converter(df)
+    universal_timestamp_converter(df, 'event.start')
+    universal_timestamp_converter(df, 'event.end')
+    universal_timestamp_converter(df, '@timestamp')
     df = sort_time_ascending(df)
     # print(df.columns[df.isna().any()].tolist())
 
@@ -158,12 +164,12 @@ def main():
     second_column = df.pop('event.end')
     df.insert(0, 'event.start', first_column)
     df.insert(1, 'event.end', second_column)
-
     # Ensure the index column is correct
     get_keyword_columns(df)
     df = filter_only_webserver_traffic(df)
     # get_null_counts(df)
     df.reset_index(drop=True, inplace=True)
+    remove_duplicate_ids_columns(df)
     output_to_csv(df)
     print('Row count is:', len(df.index))
     print('Column count is:', df.shape[1])
