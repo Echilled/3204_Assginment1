@@ -31,8 +31,9 @@ else:
 
 df = pd.DataFrame(results)
 
-
-# ID, Date Created, Sender, Recipient, Subject, Body, File name, File type, File size, Email size
+pd.options.display.max_columns = None
+pd.options.display.max_colwidth = None
+# ID, Date Created, Origin IP, Sender, Recipient, Subject, Body, File name, File type, File size, Email size
 try:
     # ID
     df["Headers"] = df["Headers"].astype(str)
@@ -44,6 +45,10 @@ try:
     df["Date"] = df["Headers"].str.extract("('Date':\s\['[\s,:\w\(\)-]*'\])")
     df["Date"] = df["Date"].str.extract("(\['.+'\])")
     df["Date"] = df["Date"].str.replace(r"([\['\]-])", '', regex=True)
+
+    # Origin IP
+    df["Origin IP"] = df["Headers"].str.extract("('Received':\s\['from\s\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])")
+    df["Origin IP"] = df["Origin IP"].str.extract("(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})")
 
     # Sender
     df["Sender"] = df["Headers"].str.extract("('From': \['[\w@\.]+'\])")
@@ -70,8 +75,8 @@ try:
     df["Attachment"] = df["Attachment"].str.replace(r"([=\"]*)", '', regex=True)
 
     # File type
-    df["File type"] = df["Parts"].str.extract("('Content-Type': \['[\w\/\-]+'\])")
-    df["File type"] = df["File type"].str.extract("(\['[\w\/\-]+'\])")
+    df["File type"] = df["Parts"].str.extract("('Content-Type': \['[\w\/\-\.]*'\])")
+    df["File type"] = df["File type"].str.extract("(\['[\w\/\-\.]*'\])")
     df["File type"] = df["File type"].str.replace(r"([\[\]'])", '', regex=True)
 
     # File size
@@ -81,8 +86,8 @@ try:
     # Email size
     df["Email size"] = df["Size"]
 
-    df = df[["Message-ID", "Date", "Sender", "Recipient", "Subject", "Email body", "Attachment", "File type", "File size", "Email size"]]
-    df.columns = ['ID', 'Date Created', 'Sender', 'Recipient', 'Subject', 'Email Body', 'File name', 'File type', 'File size', 'Email Size']
+    df = df[["Message-ID", "Date", "Origin IP", "Sender", "Recipient", "Subject", "Email body", "Attachment", "File type", "File size", "Email size"]]
+    df.columns = ['ID', 'Date Created', 'Origin IP', 'Sender', 'Recipient', 'Subject', 'Email Body', 'File name', 'File type', 'File size', 'Email Size']
 
     df.to_csv("out.csv")
 
