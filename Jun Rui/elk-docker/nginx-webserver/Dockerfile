@@ -32,6 +32,17 @@ RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-${
  && rm filebeat-${FILEBEAT_VERSION}-amd64.deb
 
 
+ ## install Packetbeat
+ENV PACKETBEAT_VERSION 8.3.3
+ENV PACKETBEAT_BASE_VERSION 8.3.3
+
+RUN curl -L -O https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-${PACKETBEAT_VERSION}-amd64.deb \
+ && dpkg -i packetbeat-${PACKETBEAT_VERSION}-amd64.deb \
+ && rm packetbeat-${PACKETBEAT_VERSION}-amd64.deb
+
+
+
+
 ###############################################################################
 #                                CONFIGURATION
 ###############################################################################
@@ -54,6 +65,21 @@ ADD logstash-beats.crt /etc/pki/tls/certs/logstash-beats.crt
 
 # create template based on filebeat version (assumption: it is the same version as elasticsearch version)
 RUN filebeat export template --es.version ${FILEBEAT_BASE_VERSION} > /etc/filebeat/filebeat.template.json
+
+
+
+### configure Packetbeat
+
+# config file
+ADD packetbeat.yml /etc/packetbeat/packetbeat.yml
+RUN chmod 644 /etc/packetbeat/packetbeat.yml
+
+# CA cert
+RUN mkdir -p /etc/pki/tls/certs
+ADD logstash-beats.crt /etc/pki/tls/certs/logstash-beats.crt
+
+# create template based on filebeat version (assumption: it is the same version as elasticsearch version)
+RUN packetbeat export template --es.version ${PACKETBEAT_BASE_VERSION} > /etc/packetbeat/packetbeat.template.json
 
 ###############################################################################
 #                                    DATA
