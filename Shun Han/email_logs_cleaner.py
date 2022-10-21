@@ -4,8 +4,8 @@ import json
 import pandas as pd
 
 # Change IP address of Mail server
-# ADDRESS = "http://192.168.91.5:8025/api/v2/messages"
-ADDRESS = "http://192.168.1.181:8025/api/v2/messages"
+ADDRESS = "http://192.168.91.5:8025/api/v2/messages"
+# ADDRESS = "http://192.168.1.181:8025/api/v2/messages"
 r = requests.get(f"{ADDRESS}?limit=250")
 total = json.loads(r.text)["total"]
 
