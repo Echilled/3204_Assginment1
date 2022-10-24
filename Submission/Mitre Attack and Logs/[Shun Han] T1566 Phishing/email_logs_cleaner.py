@@ -1,3 +1,4 @@
+import os
 from email.message import Message
 import requests
 import json
@@ -21,13 +22,28 @@ def filter_results(data):
 
 if total > 250:
     for i in range((total // 250) + 1):
-        r = requests.get(f"{ADDRESS}?limit=250&start={i*250}")
-        data = json.loads(r.text)["items"]
-        filter_results(data)
+        with open (f'data{i}.json', 'w') as f:
+            r = requests.get(f"{ADDRESS}?limit=250&start={i*250}")
+            data = json.loads(r.text)["items"]
+            filter_results(data)
+            json.dump(data, f)
 else:
     r = requests.get(f"{ADDRESS}?limit=250")
     data = json.loads(r.text)["items"]
     filter_results(data)
+    with open('raw_logs.json', 'w') as f:
+        json.dump(data, f)
+
+files = [f for f in os.listdir('.') if os.path.isfile(f) if f.startswith('data')]
+res = list()
+for f1 in files:
+    with open(f1, 'r') as infile:
+        res.extend(json.load(infile))
+
+    with open('raw_logs.json', 'w') as outfile:
+        json.dump(res, outfile)
+    os.remove(f1)
+
 
 df = pd.DataFrame(results)
 
