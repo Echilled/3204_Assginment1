@@ -1,8 +1,6 @@
 
 import socket
-import subprocess
 import sys
-from datetime import datetime
 
 
 IP_ADDRESS = "20.248.199.150"
@@ -11,7 +9,6 @@ common_ports = [21, 22, 25, 80, 443]
 
 
 def main():
-    print("hi")
     # target = socket.gethostbyname(sys.argv[1])
     target = IP_ADDRESS
     try:
