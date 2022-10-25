@@ -32,17 +32,24 @@ else:
     data = json.loads(r.text)["items"]
     filter_results(data)
     with open('raw_logs.json', 'w') as f:
+        f.write(f'{{"total":{total}, "count":{total}, "items":')
         json.dump(data, f)
+        f.write("}")
 
 files = [f for f in os.listdir('.') if os.path.isfile(f) if f.startswith('data')]
 res = list()
+
 for f1 in files:
     with open(f1, 'r') as infile:
         res.extend(json.load(infile))
+    
 
     with open('raw_logs.json', 'w') as outfile:
-        json.dump(res, outfile)
+            outfile.write(f'{{"total":{total}, "count":250, "items":')
+            json.dump(res, outfile)
+            outfile.write("}")
     os.remove(f1)
+
 
 
 df = pd.DataFrame(results)
